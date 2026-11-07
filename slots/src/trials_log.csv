@@ -1,0 +1,10 @@
+name,val_points,R_drift,R_shared_change,R_short_history,R_stable,train_brier,secs
+"A0 previous probe (8 lags+6 pairs, no recency)",32.14,1.469,1.171,0.689,0.138,0.553,0.4
+A1 all 28 pairs,31.2,1.486,1.193,0.829,0.185,0.5721,0.7
+"A2 all 28 pairs, lam=1",31.78,1.357,1.102,0.849,0.244,0.5575,0.7
+B1 recency hl=80,36.24,0.974,0.738,0.708,0.201,0.4977,0.4
+B2 recency hl=40,38.0,0.732,0.556,0.729,0.297,0.4744,0.4
+B3 recency hl=20,37.5,0.621,0.521,0.78,0.477,0.4759,0.4
+"C1 adaptive hl per machine {inf,80,40,20}",39.56,0.634,0.53,0.722,0.181,0.4626,2.1
+C2 adaptive + size recency hl=60,39.6,0.632,0.527,0.72,0.182,0.4633,2.1
+C3 adaptive + lower lam (0.1),41.76,0.521,0.418,0.658,0.151,0.4404,2.2

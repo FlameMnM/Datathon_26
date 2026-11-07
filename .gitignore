@@ -1,0 +1,22 @@
+# --- Python environment (1.8 GB, rebuild with pip) ---
+.venv/
+__pycache__/
+*.pyc
+
+# --- Organizer data and kit (do not redistribute) ---
+# Participant kit: organizer scripts, docs and public/ train/validation/test data
+slots/kit/
+# Original downloaded kit zip
+slots/data/raw/
+slots/data/processed/
+# Analysis outputs derived from organizer validation targets (regenerate with src/size_probe.py etc.)
+slots/src/*.csv
+!slots/src/trials_log.csv
+# Prediction files for organizer train/validation splits (keep only test submissions + code ZIPs)
+slots/runs/*/validation_predictions.csv
+slots/runs/*/train_predictions.csv
+
+# --- Misc ---
+*:Zone.Identifier
+slots/src/*.log
+.DS_Store
