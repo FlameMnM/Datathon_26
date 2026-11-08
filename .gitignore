@@ -20,3 +20,6 @@ slots/runs/*/train_predictions.csv
 *:Zone.Identifier
 slots/src/*.log
 .DS_Store
+
+# --- Adaptation-round organizer kit (organizer data, do not redistribute) ---
+slots/adapt_kit/

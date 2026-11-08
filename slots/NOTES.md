@@ -115,3 +115,13 @@ Revalidation of v6 (rigor2.py in session scratchpad):
 - Rolling next-tick Brier change vs v5, episode-bootstrap 95% CI: train -.021 [-.026,-.015], val -.018 [-.024,-.013], test -.020 [-.023,-.016]; all perturbed variants within ±.002.
 - Test calibration OK (bins within ~.03; slight overconfidence at extremes).
 - Failure mode: FAKE change injected into unchanged machines → v6 +.018 worse. Mitigated by detector separation (stable ≤53 vs changed ≥287, thr 150; test flags exactly 96/192 episodes). Round two: rerun splitstats.py on new histories before trusting the flip prior.
+
+## Adaptation round (Sun Nov 8, data 10:30 AM, due 12 PM) — entry adapt-v7
+Kit extracted to `slots/adapt_kit/` (round: adaptation, max 20 pts). DATA.md: "Adaptation changes which temporal relationships recur."
+Unchanged models on adaptation validation: v4 9.92, v5 9.91, v6 9.91 / 20 (≈ reference, R≈1) — lag pairs changed.
+New pairs from TRAIN: (1,4),(3,8),(2,6) (98% of stable machines have exactly one); payout-size modes IDENTICAL to main.
+Swapping pairs only: v4 18.34, v5 18.54, v6 18.58.
+v7 = v6 + `learn_structure()`: learns pairs (best pair for >=10% of stable train machines, LR gain > 7.5), p_none, MID line per type, MU, and
+spreads (empirical-Bayes method of moments: observed var − mean sampling var) from `/data/train` at predict time; supports any # of pairs.
+Same code: main val 56.30/60 (v6 56.32), adaptation val **18.61/20**. Test histories (inputs only) show the same 3 pairs.
+| adapt-v7 | 18.61 / 20 val | `runs/adapt-v7/submission.csv` (SHA ebd69080…) + `runs/adapt-v7/entry.zip` (b32e794e…); source `entries/v7/` | checker VALID (adaptation/test); read-only reproduction byte-identical; ~21 s |
