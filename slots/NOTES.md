@@ -73,3 +73,45 @@ Findings:
 - Shipped calibrated LLR_all (2 params): +0.26 pts avg over 20 val half-splits (all positive), train Brier .3625→.3613.
 - LightGBM would give ~55.03 (+0.45) but needs lightgbm at runtime → not shipped.
 | **main-v4 (v3 + LightGBM size-mode trees, exported → stdlib)** | 55.95 in-sample / **≈55.05 OOF** | `runs/main-v4/submission.csv` (SHA 7d103a1b…) + `runs/main-v4/entry.zip`; source `entries/main-v4/` | checker VALID; fresh reproduction byte-identical; no runtime deps; mode acc 71.2% OOF; +0.17..0.21 pts vs v3 OOF (all 5 reps & 20 halves positive); train Brier .36129→.36080 |
+
+## v5 — tied-coefficient prior (Sat 8:30 PM; scratch tests in session scratchpad)
+Tried (web-sourced ideas): MacKay moderated posterior predictive (probit approx.) → +0.004 max, rejected; partial-pattern rows for short_history → only +3-5 rows/machine, skipped.
+Found: for active machines, intercept b0 and XOR coef c are tied (corr -.89). Midpoint m = b0 + c/2 has sd ~.58 (vs b0 sd ~2.4) and is linear in signal per type.
+Reparametrized: logit = m + c*(XOR-0.5), m ~ N(mid[type]+slope[type]*signal, .6²), c ~ N(±4.85, .7²); constants fit on TRAIN histories only
+(balanced -.78/.33, jackpot -2.03/.30, steady .54/.62). SDs = measured train spread, not tuned on val.
+| **main-v5** | 56.30 in-sample / **≈55.4 OOF** (+0.34 vs v4, 20/20 val halves positive, min +.009) | `runs/main-v5/submission.csv` (SHA 80f225a0…) + `runs/main-v5/entry.zip` (fd7cde49…); source `entries/main-v5/` | checker VALID; fresh read-only reproduction byte-identical; stdlib only |
+All 4 condition ratios improved (LLR-mode base): drift .090→.083, shared .087→.081, short .122→.110, stable .078→.076.
+Untried ideas: soft change-point (BOCPD run-length averaging) for drift/shared; tighter SDs (.4/.5 gave +0.08 more on val but would be tuning on val).
+Generalization check (v5): midpoint structure re-found independently in train/val/TEST histories (last-60-tick fits; mid sd ~.8 vs b0 sd ~2.25 in all three;
+per-type lines agree within ~±.15). Constants fit from train / val / test histories → val +.34 / +.26 / +.29 and train-label Brier -.0021/-.0026/-.0025
+(every condition improves in every variant). Crude constants (one slope, wide sds) still +.19..+.22. Not val-specific.
+Risk: round two may change the generator → idea: re-estimate MID from the round's own histories at predict time.
+
+## Round of deeper search after v5 (Sat night) — nothing reached +0.20, v5 stays
+- Regime-change structure: at a change the active pair is KEPT (90% drift / 97% shared) and the sign FLIPS (99-100%); midpoint corr .78 pre/post.
+  Pre-change posterior as prior for post-change fit (same pair, flipped sign): +0.014..+0.055 → rejected (post segments already identify the model).
+- True win prob is NOT constant within an XOR state on stable machines (z sd 2.0 vs 1.0). Cause found: hidden size mode also shifts win logit (+~0.5 high vs low).
+  Adjusting win logit by gamma*(P(high)-.46): LLR mode +0.02, LGB mode +0.18 (in-sample, train Brier unchanged) → rejected.
+  Ceiling with PERFECT mode knowledge: win-adjust only +0.36; perfect mode for SIZES +2.7 → the mode predictor is the bottleneck.
+- Mode search: no periodicity in cutoff, no episode clustering (sd .172 vs binomial .176), no signal effect, slot effect = noise.
+  Lag-1 payout evidence is NEGATIVELY related to current mode (-.08 vs ~+.11 at lags 2-40, flat, no decay) → mode flips after showing itself, and
+  otherwise = persistent machine trait + iid noise. LGB already uses last payouts; full-history LLR is near-optimal.
+- Moderated (MacKay) predictive: +0.004. Residual correlation of v5 errors with any lag/XOR/size feature ≤ .11.
+
+## main-v6 — regime-change (flip) prior, rigorously tested (Sat night)
+Settings from TRAIN histories only: FL_EPS .06 (P(pair kept & sign flipped)=.937), FL_SHRINK .87, FL_SD .75. No val tuning.
+| Check | v5 | v6 (flip) | placebo (sign kept) |
+|---|---|---|---|
+| val points (true probs) | 56.296 | 56.320 (+.024; 72% of 50 halves +) | 56.239 (-.057; 6% +) |
+| train next-tick Brier | .35867 | .35859 | .35853 (noise level at this scale) |
+| rolling next-tick Brier, 3 ticks after change: train/val/TEST | .222/.198/.208 | .160/.138/.160 | .326/.309/.297 |
+| rolling all lags 3-45 (n=2670/2672/5351) | .132/.126/.132 | .111/.108/.112 | .154/.150/.152 |
+Gain fades to ~0 by 45 ticks after the change → small at query time (changes 53-104 ticks old). Real & general, but < +0.2 on score.
+| main-v6 | 56.32 in-sample | `runs/main-v6/submission.csv` (SHA 1e90bcd3…) + `runs/main-v6/entry.zip` (7ab9bc41…) | checker VALID; read-only reproduction byte-identical |
+Revalidation of v6 (rigor2.py in session scratchpad):
+- Settings re-derived per split: train .937/.87/.75, val .947/.83/.80, TEST .925/.90/.81 → structure is a property of the generator.
+- Val points with settings from train/val/test: +.024/+.015/+.013; eps .03-.15 and shrink .5-1.0 all +.024 (flat). sd .5 gives +.079 but NOT adopted (would be val tuning).
+- Stable/short_history predictions identical to v5 (max diff 0). 4 disjoint episode folds: +.006 +.103 -.021 +.058.
+- Rolling next-tick Brier change vs v5, episode-bootstrap 95% CI: train -.021 [-.026,-.015], val -.018 [-.024,-.013], test -.020 [-.023,-.016]; all perturbed variants within ±.002.
+- Test calibration OK (bins within ~.03; slight overconfidence at extremes).
+- Failure mode: FAKE change injected into unchanged machines → v6 +.018 worse. Mitigated by detector separation (stable ≤53 vs changed ≥287, thr 150; test flags exactly 96/192 episodes). Round two: rerun splitstats.py on new histories before trusting the flip prior.
