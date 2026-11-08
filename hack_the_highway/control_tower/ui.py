@@ -20,7 +20,7 @@ main{display:grid;grid-template-columns:330px 1fr;gap:16px;padding:16px 20px;ali
 .feed{display:flex;flex-direction:column;gap:8px;position:sticky;top:8px;max-height:calc(100vh - 140px);overflow:auto}
 .ev{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
 .ev.on{border-color:var(--accent);box-shadow:0 0 0 2px #2f5bd322}.ev .top{display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
-.ev .txt{margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ev .txt{margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .chip{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:99px;color:#fff;margin-right:4px}
 .k-supplier_delay{background:var(--delay)}.k-plant_outage{background:var(--outage)}.k-quality_hold{background:var(--quality)}
 .k-noise{background:var(--noise)}.k-unconfirmed{background:var(--unconfirmed)}
