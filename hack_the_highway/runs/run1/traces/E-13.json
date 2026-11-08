@@ -1,0 +1,118 @@
+{
+  "event": {
+    "event_id": "E-13",
+    "received_at": "2027-03-08T10:41:00",
+    "source": "ops chat",
+    "text": "Someone on the floor mentioned a possible shortage of something electronic sometime soon. Not confirmed by anyone."
+  },
+  "category": [
+    "unconfirmed"
+  ],
+  "summary": "I1 unconfirmed - escalated to a human, no operational change (The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates.). Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 431,
+      "output_tokens": 149,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "unconfirmed",
+        "summary": "A floor rumor mentions a possible unspecified electronic shortage without confirmation or specifics.",
+        "supplier": "",
+        "part": "electronic",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "sometime soon",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "unconfirmed",
+        "summary": "Someone on the floor mentioned a possible shortage of something electronic sometime soon. Not confirmed by anyone.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: unconfirmed"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "unconfirmed",
+      "summary": "A floor rumor mentions a possible unspecified electronic shortage without confirmation or specifics.",
+      "llm_reason": "The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates.",
+      "reason": "The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates."
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): unconfirmed"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "escalated 1 unclear item(s) to a human; no write actions"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:05:50.879",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: A floor rumor mentions a possible unspecified electronic shortage without confirmation or specifics. (The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "No operational impact. Handed to a human for review.",
+    "changed": [
+      "Nothing. No production order, dealer, customer, loaner, lot or vehicle record was written.",
+      "One escalation to a human (not an operational change)."
+    ],
+    "unchanged": [
+      "All 540 production orders, 50 dealers, all loaner pools and all 364 lots are untouched."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:05:50.879",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: A floor rumor mentions a possible unspecified electronic shortage without confirmation or specifics. (The report is a rumor on the floor, unconfirmed, and lacks specific details such as the exact plant, part, or dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[20:03:21] knowledge graph: 17040 nodes, 28251 edges | extractor: gemini | model: gemini-3.5-flash-lite
+[20:03:21] GET /events -> 6 events; GET /tools -> 10 tools
+[20:03:21] --> X-01 arrived (explainer: supplier delay, 12:00): Battery packs are running late. The line is waiting.
+[20:03:22] X-01  unconfirmed                      writes=  0 failed=0  I1 unconfirmed - escalated to a human, no operational change (The message lacks specifics regarding which plan
+[20:03:22] --> X-02 arrived (explainer: plant outage, 12:05): The assembly plant is down through Wednesday.
+[20:03:26] X-02  unconfirmed                      writes=  0 failed=0  I1 unconfirmed - escalated to a human, no operational change (Missing specific plant location and start date.)
+[20:03:26] --> X-03 arrived (explainer: quality hold, 12:10): Quality confirmed a defective battery lot.
+[20:03:31] X-03  unconfirmed                      writes=  0 failed=0  I1 unconfirmed - escalated to a human, no operational change (It mentions a defective part but lacks the neces
+[20:03:31] --> X-04 arrived (explainer: noise, 12:15): Can someone send me the latest marketing brochure?
+[20:03:34] X-04  noise                            writes=  0 failed=0  I1 noise - not about operations, no action. Actions: none; 0 failed calls
+[20:03:34] --> X-05 arrived (explainer: rumor, 12:20): Heard there might be trouble at one of the plants?
+[20:03:39] X-05  unconfirmed                      writes=  0 failed=0  I1 unconfirmed - escalated to a human, no operational change (This is a vague rumor lacking specifics such as 
+[20:03:39] --> X-06 arrived (explainer: compound, 12:25): Plant is offline, and the battery shipment is delayed.
+[20:03:44] X-06  unconfirmed                      writes=  0 failed=0  I1 unconfirmed - escalated to a human, no operational change (Missing the specifics needed to act such as whic
+[20:03:44] log: /home/mattm/Datathon_26/hack_the_highway/runs/test_explainer_gemini/action_log.jsonl  ui: /home/mattm/Datathon_26/hack_the_highway/runs/test_explainer_gemini/control_tower.html

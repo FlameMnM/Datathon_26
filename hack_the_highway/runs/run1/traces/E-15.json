@@ -1,0 +1,3762 @@
+{
+  "event": {
+    "event_id": "E-15",
+    "received_at": "2027-03-08T11:15:00",
+    "source": "quality bulletin",
+    "text": "QUALITY BULLETIN QB-368: Lot LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld. Place the lot on hold, stop sale of unsold vehicles and contact owners."
+  },
+  "category": [
+    "quality_hold"
+  ],
+  "summary": "I1 quality hold on LOT-0191 (CHIP-IVI at P_IN). Actions: crm.notify_customer x76, dealer.stop_sale x25, quality.hold_lot x1; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 490,
+      "output_tokens": 157,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "quality_hold",
+        "summary": "Defective weld found in CHIP-IVI lot LOT-0191 installed at Princeton IN on vehicles built 2027-03-02 to 2027-03-03.",
+        "supplier": "SUP-12",
+        "part": "CHIP-IVI",
+        "plant": "P_IN",
+        "shipment_id": "",
+        "lot_id": "LOT-0191",
+        "date_1": "2027-03-02",
+        "date_2": "2027-03-03",
+        "confirmed_and_specific": true,
+        "reason": "A specific part lot used at a plant has a defect affecting vehicles built in a specific date range."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "quality_hold",
+        "summary": "QUALITY BULLETIN QB-368: Lot LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld. Place the lot ",
+        "supplier": "SUP-12",
+        "part": "CHIP-IVI",
+        "plant": "P_IN",
+        "shipment_id": "",
+        "lot_id": "LOT-0191",
+        "date_1": "2027-03-02",
+        "date_2": "2027-03-03",
+        "confirmed_and_specific": true,
+        "reason": "keyword rules: quality_hold"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "quality_hold",
+      "summary": "Defective weld found in CHIP-IVI lot LOT-0191 installed at Princeton IN on vehicles built 2027-03-02 to 2027-03-03.",
+      "llm_reason": "A specific part lot used at a plant has a defect affecting vehicles built in a specific date range.",
+      "dates": {
+        "date_1": "'2027-03-02' -> 2027-03-02 (ISO date)",
+        "date_2": "'2027-03-03' -> 2027-03-03 (ISO date)"
+      },
+      "resolution": {
+        "part": "'CHIP-IVI' -> CHIP-IVI (exact match 'chip-ivi')",
+        "plant": "'P_IN' -> P_IN (exact match 'p_in')",
+        "supplier": "'SUP-12' -> SUP-12 (exact match 'sup-12')"
+      },
+      "lots": [
+        "LOT-0191"
+      ],
+      "part": "CHIP-IVI",
+      "plant": "P_IN",
+      "grounded": true
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): quality_hold"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "routing [I1] to QualityAgent: lots ['LOT-0191']"
+    },
+    {
+      "agent": "QualityAgent",
+      "step": "LOT-0191: 116 affected vehicles (40 in stock, 76 sold)"
+    }
+  ],
+  "graph_paths": [
+    {
+      "incident": "I1",
+      "title": "LOT-0191 (CHIP-IVI from SUP-12 at P_IN, built 2027-03-02..2027-03-03)",
+      "layers": [
+        {
+          "label": "Lot",
+          "ids": [
+            "LOT-0191"
+          ]
+        },
+        {
+          "edge": "INSTALLED_IN"
+        },
+        {
+          "label": "ProductionOrder",
+          "ids": [
+            "PO-0289",
+            "PO-0291",
+            "PO-0292",
+            "PO-0294"
+          ]
+        },
+        {
+          "edge": "BUILT_FROM (reverse)"
+        },
+        {
+          "label": "Vehicle",
+          "ids": [
+            "AUR0003174",
+            "AUR0003175",
+            "AUR0003176",
+            "AUR0003177",
+            "AUR0003178",
+            "AUR0003179",
+            "AUR0003180",
+            "AUR0003181",
+            "AUR0003182",
+            "AUR0003183",
+            "AUR0003184",
+            "AUR0003185",
+            "AUR0003186",
+            "AUR0003187",
+            "AUR0003188",
+            "AUR0003189",
+            "AUR0003190",
+            "AUR0003191",
+            "AUR0003192",
+            "AUR0003193",
+            "AUR0003194",
+            "AUR0003195",
+            "AUR0003196",
+            "AUR0003197",
+            "AUR0003198",
+            "AUR0003199",
+            "AUR0003200",
+            "AUR0003234",
+            "AUR0003235",
+            "AUR0003236",
+            "AUR0003237",
+            "AUR0003238",
+            "AUR0003239",
+            "AUR0003240",
+            "AUR0003241",
+            "AUR0003242",
+            "AUR0003243",
+            "AUR0003244",
+            "AUR0003245",
+            "AUR0003246",
+            "AUR0003247",
+            "AUR0003248",
+            "AUR0003249",
+            "AUR0003250",
+            "AUR0003251",
+            "AUR0003252",
+            "AUR0003253",
+            "AUR0003254",
+            "AUR0003255",
+            "AUR0003256",
+            "AUR0003257",
+            "AUR0003258",
+            "AUR0003259",
+            "AUR0003260",
+            "AUR0003261",
+            "AUR0003262",
+            "AUR0003263",
+            "AUR0003264",
+            "AUR0003265",
+            "AUR0003266",
+            "AUR0003267",
+            "AUR0003268",
+            "AUR0003269",
+            "AUR0003270",
+            "AUR0003271",
+            "AUR0003272",
+            "AUR0003273",
+            "AUR0003274",
+            "AUR0003275",
+            "AUR0003276",
+            "AUR0003277",
+            "AUR0003278",
+            "AUR0003279",
+            "AUR0003280",
+            "AUR0003281",
+            "AUR0003282",
+            "AUR0003283",
+            "AUR0003284",
+            "AUR0003285",
+            "AUR0003286",
+            "AUR0003287",
+            "AUR0003288",
+            "AUR0003289",
+            "AUR0003290",
+            "AUR0003291",
+            "AUR0003292",
+            "AUR0003293",
+            "AUR0003294",
+            "AUR0003295",
+            "AUR0003296",
+            "AUR0003297",
+            "AUR0003298",
+            "AUR0003335",
+            "AUR0003336",
+            "AUR0003337",
+            "AUR0003338",
+            "AUR0003339",
+            "AUR0003340",
+            "AUR0003341",
+            "AUR0003342",
+            "AUR0003343",
+            "AUR0003344",
+            "AUR0003345",
+            "AUR0003346",
+            "AUR0003347",
+            "AUR0003348",
+            "AUR0003349",
+            "AUR0003350",
+            "AUR0003351",
+            "AUR0003352",
+            "AUR0003353",
+            "AUR0003354",
+            "AUR0003355",
+            "AUR0003356",
+            "AUR0003357",
+            "AUR0003358"
+          ]
+        },
+        {
+          "edge": "AT_DEALER (in_stock) / OWNED_BY (sold)"
+        },
+        {
+          "label": "Dealer",
+          "ids": [
+            "D02",
+            "D03",
+            "D04",
+            "D06",
+            "D07",
+            "D08",
+            "D10",
+            "D12",
+            "D13",
+            "D15",
+            "D20",
+            "D21",
+            "D22",
+            "D23",
+            "D24",
+            "D25",
+            "D26",
+            "D27",
+            "D28",
+            "D31",
+            "D32",
+            "D35",
+            "D39",
+            "D44",
+            "D45"
+          ]
+        },
+        {
+          "label": "Customer",
+          "ids": [
+            "C0053",
+            "C0093",
+            "C0100",
+            "C0102",
+            "C0104",
+            "C0163",
+            "C0260",
+            "C0310",
+            "C0434",
+            "C0437",
+            "C0501",
+            "C0541",
+            "C0604",
+            "C0632",
+            "C0743",
+            "C0959",
+            "C1109",
+            "C1145",
+            "C1159",
+            "C1171",
+            "C1236",
+            "C1357",
+            "C1366",
+            "C1386",
+            "C1439",
+            "C1550",
+            "C1596",
+            "C1649",
+            "C1731",
+            "C1779",
+            "C1844",
+            "C1963",
+            "C2115",
+            "C2275",
+            "C2281",
+            "C2418",
+            "C2549",
+            "C2583",
+            "C2605",
+            "C2622",
+            "C2701",
+            "C2708",
+            "C2749",
+            "C2823",
+            "C2898",
+            "C3029",
+            "C3355",
+            "C3697",
+            "C3771",
+            "C4033",
+            "C4096",
+            "C4180",
+            "C4244",
+            "C4249",
+            "C4447",
+            "C4522",
+            "C4595",
+            "C4863",
+            "C4937",
+            "C5016",
+            "C5021",
+            "C5099",
+            "C5234",
+            "C5279",
+            "C5489",
+            "C5623",
+            "C5998",
+            "C6063",
+            "C6067",
+            "C6399",
+            "C6418",
+            "C6727",
+            "C6746",
+            "C6816",
+            "C6890",
+            "C7000"
+          ]
+        }
+      ]
+    }
+  ],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:05:59.975",
+      "agent": "QualityAgent",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0191"
+      },
+      "why": "defective lot",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.977",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0003242"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.978",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0003238",
+          "AUR0003254",
+          "AUR0003267"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.979",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0003355"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.979",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0003235"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.980",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0003283"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.981",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0003236",
+          "AUR0003338"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.981",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0003180",
+          "AUR0003258"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.982",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0003176"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.983",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0003243"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.983",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D15",
+        "vins": [
+          "AUR0003264",
+          "AUR0003349"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.984",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0003293",
+          "AUR0003352"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.984",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0003287"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.985",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0003277"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.986",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0003175",
+          "AUR0003184",
+          "AUR0003273"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.987",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D24",
+        "vins": [
+          "AUR0003294"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.988",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0003240",
+          "AUR0003262"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.988",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0003286",
+          "AUR0003296"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.989",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0003288"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.989",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0003339"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.990",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0003250",
+          "AUR0003274"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.990",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0003270"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.991",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D35",
+        "vins": [
+          "AUR0003337"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.991",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0003256",
+          "AUR0003285"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.992",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0003280",
+          "AUR0003340"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.993",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0003341",
+          "AUR0003343",
+          "AUR0003345"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.993",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0053",
+        "message": "Safety notice: your vehicle(s) AUR0003263 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.994",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0093",
+        "message": "Safety notice: your vehicle(s) AUR0003185 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.995",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0100",
+        "message": "Safety notice: your vehicle(s) AUR0003295 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.995",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0102",
+        "message": "Safety notice: your vehicle(s) AUR0003190 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.996",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0104",
+        "message": "Safety notice: your vehicle(s) AUR0003177 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.996",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0163",
+        "message": "Safety notice: your vehicle(s) AUR0003348 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.997",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0260",
+        "message": "Safety notice: your vehicle(s) AUR0003259 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.998",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0310",
+        "message": "Safety notice: your vehicle(s) AUR0003174 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.998",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0434",
+        "message": "Safety notice: your vehicle(s) AUR0003272 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.999",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0437",
+        "message": "Safety notice: your vehicle(s) AUR0003193 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.999",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0501",
+        "message": "Safety notice: your vehicle(s) AUR0003260 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.000",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0541",
+        "message": "Safety notice: your vehicle(s) AUR0003196 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.001",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0604",
+        "message": "Safety notice: your vehicle(s) AUR0003298 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.002",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0632",
+        "message": "Safety notice: your vehicle(s) AUR0003187 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.003",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0743",
+        "message": "Safety notice: your vehicle(s) AUR0003268 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.004",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0959",
+        "message": "Safety notice: your vehicle(s) AUR0003347 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.004",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1109",
+        "message": "Safety notice: your vehicle(s) AUR0003252 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.005",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1145",
+        "message": "Safety notice: your vehicle(s) AUR0003266 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.006",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1159",
+        "message": "Safety notice: your vehicle(s) AUR0003189 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.006",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1171",
+        "message": "Safety notice: your vehicle(s) AUR0003200 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.007",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1236",
+        "message": "Safety notice: your vehicle(s) AUR0003183 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.008",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1357",
+        "message": "Safety notice: your vehicle(s) AUR0003182 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.008",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1366",
+        "message": "Safety notice: your vehicle(s) AUR0003192 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.009",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1386",
+        "message": "Safety notice: your vehicle(s) AUR0003358 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.009",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1439",
+        "message": "Safety notice: your vehicle(s) AUR0003179 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.010",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1550",
+        "message": "Safety notice: your vehicle(s) AUR0003178 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.011",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1596",
+        "message": "Safety notice: your vehicle(s) AUR0003289 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.011",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1649",
+        "message": "Safety notice: your vehicle(s) AUR0003275 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.012",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1731",
+        "message": "Safety notice: your vehicle(s) AUR0003198 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.012",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1779",
+        "message": "Safety notice: your vehicle(s) AUR0003237 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.013",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1844",
+        "message": "Safety notice: your vehicle(s) AUR0003346 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.014",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1963",
+        "message": "Safety notice: your vehicle(s) AUR0003279 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.014",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2115",
+        "message": "Safety notice: your vehicle(s) AUR0003246 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.015",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2275",
+        "message": "Safety notice: your vehicle(s) AUR0003181 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.015",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2281",
+        "message": "Safety notice: your vehicle(s) AUR0003241 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.016",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2418",
+        "message": "Safety notice: your vehicle(s) AUR0003191 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.016",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2549",
+        "message": "Safety notice: your vehicle(s) AUR0003194 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.017",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2583",
+        "message": "Safety notice: your vehicle(s) AUR0003249 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.018",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2605",
+        "message": "Safety notice: your vehicle(s) AUR0003284 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.019",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2622",
+        "message": "Safety notice: your vehicle(s) AUR0003290 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.020",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2701",
+        "message": "Safety notice: your vehicle(s) AUR0003199 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.020",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2708",
+        "message": "Safety notice: your vehicle(s) AUR0003197 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.021",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2749",
+        "message": "Safety notice: your vehicle(s) AUR0003269 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.021",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2823",
+        "message": "Safety notice: your vehicle(s) AUR0003342 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.022",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2898",
+        "message": "Safety notice: your vehicle(s) AUR0003265 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.023",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3029",
+        "message": "Safety notice: your vehicle(s) AUR0003253 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3355",
+        "message": "Safety notice: your vehicle(s) AUR0003297 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3697",
+        "message": "Safety notice: your vehicle(s) AUR0003353 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3771",
+        "message": "Safety notice: your vehicle(s) AUR0003276 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.025",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4033",
+        "message": "Safety notice: your vehicle(s) AUR0003291 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.026",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4096",
+        "message": "Safety notice: your vehicle(s) AUR0003281 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.027",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4180",
+        "message": "Safety notice: your vehicle(s) AUR0003357 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.027",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4244",
+        "message": "Safety notice: your vehicle(s) AUR0003239 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.028",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4249",
+        "message": "Safety notice: your vehicle(s) AUR0003186 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.028",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4447",
+        "message": "Safety notice: your vehicle(s) AUR0003336 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.029",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4522",
+        "message": "Safety notice: your vehicle(s) AUR0003245 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.029",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4595",
+        "message": "Safety notice: your vehicle(s) AUR0003354 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.030",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4863",
+        "message": "Safety notice: your vehicle(s) AUR0003257 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4937",
+        "message": "Safety notice: your vehicle(s) AUR0003261 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5016",
+        "message": "Safety notice: your vehicle(s) AUR0003356 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5021",
+        "message": "Safety notice: your vehicle(s) AUR0003195 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.032",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5099",
+        "message": "Safety notice: your vehicle(s) AUR0003188 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.032",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5234",
+        "message": "Safety notice: your vehicle(s) AUR0003351 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.033",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5279",
+        "message": "Safety notice: your vehicle(s) AUR0003292 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.033",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5489",
+        "message": "Safety notice: your vehicle(s) AUR0003271 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5623",
+        "message": "Safety notice: your vehicle(s) AUR0003255 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5998",
+        "message": "Safety notice: your vehicle(s) AUR0003335 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6063",
+        "message": "Safety notice: your vehicle(s) AUR0003251 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.036",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6067",
+        "message": "Safety notice: your vehicle(s) AUR0003350 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.036",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6399",
+        "message": "Safety notice: your vehicle(s) AUR0003247 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.037",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6418",
+        "message": "Safety notice: your vehicle(s) AUR0003344 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.038",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6727",
+        "message": "Safety notice: your vehicle(s) AUR0003234 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.038",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6746",
+        "message": "Safety notice: your vehicle(s) AUR0003278 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.039",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6816",
+        "message": "Safety notice: your vehicle(s) AUR0003244 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.039",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6890",
+        "message": "Safety notice: your vehicle(s) AUR0003248 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.040",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C7000",
+        "message": "Safety notice: your vehicle(s) AUR0003282 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "Lot LOT-0191 held; 40 unsold vehicles stopped from sale, 76 owners contacted.",
+    "changed": [
+      "Lot LOT-0191 on quality hold; stop-sale on 40 in-stock vehicles at 25 dealers; 76 owners notified."
+    ],
+    "unchanged": [
+      "3 other CHIP-IVI lots at P_IN (LOT-0189, LOT-0190, LOT-0192) are outside the suspect build window and were not held.",
+      "69 vehicles built at P_IN on the same days use models without CHIP-IVI and were not touched.",
+      "No production orders were rescheduled and no loaners assigned (not part of a quality hold)."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:05:59.975",
+      "agent": "QualityAgent",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0191"
+      },
+      "why": "defective lot",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.977",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0003242"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.978",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0003238",
+          "AUR0003254",
+          "AUR0003267"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.979",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0003355"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.979",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0003235"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.980",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0003283"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.981",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0003236",
+          "AUR0003338"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.981",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0003180",
+          "AUR0003258"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.982",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0003176"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.983",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0003243"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.983",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D15",
+        "vins": [
+          "AUR0003264",
+          "AUR0003349"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.984",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0003293",
+          "AUR0003352"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.984",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0003287"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.985",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0003277"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.986",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0003175",
+          "AUR0003184",
+          "AUR0003273"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.987",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D24",
+        "vins": [
+          "AUR0003294"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.988",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0003240",
+          "AUR0003262"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.988",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0003286",
+          "AUR0003296"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.989",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0003288"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.989",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0003339"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.990",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0003250",
+          "AUR0003274"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.990",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0003270"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.991",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D35",
+        "vins": [
+          "AUR0003337"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.991",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0003256",
+          "AUR0003285"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.992",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0003280",
+          "AUR0003340"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.993",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0003341",
+          "AUR0003343",
+          "AUR0003345"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0191",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.993",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0053",
+        "message": "Safety notice: your vehicle(s) AUR0003263 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.994",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0093",
+        "message": "Safety notice: your vehicle(s) AUR0003185 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.995",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0100",
+        "message": "Safety notice: your vehicle(s) AUR0003295 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.995",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0102",
+        "message": "Safety notice: your vehicle(s) AUR0003190 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.996",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0104",
+        "message": "Safety notice: your vehicle(s) AUR0003177 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.996",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0163",
+        "message": "Safety notice: your vehicle(s) AUR0003348 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.997",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0260",
+        "message": "Safety notice: your vehicle(s) AUR0003259 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.998",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0310",
+        "message": "Safety notice: your vehicle(s) AUR0003174 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.998",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0434",
+        "message": "Safety notice: your vehicle(s) AUR0003272 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.999",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0437",
+        "message": "Safety notice: your vehicle(s) AUR0003193 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:59.999",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0501",
+        "message": "Safety notice: your vehicle(s) AUR0003260 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.000",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0541",
+        "message": "Safety notice: your vehicle(s) AUR0003196 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.001",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0604",
+        "message": "Safety notice: your vehicle(s) AUR0003298 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.002",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0632",
+        "message": "Safety notice: your vehicle(s) AUR0003187 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.003",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0743",
+        "message": "Safety notice: your vehicle(s) AUR0003268 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.004",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0959",
+        "message": "Safety notice: your vehicle(s) AUR0003347 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.004",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1109",
+        "message": "Safety notice: your vehicle(s) AUR0003252 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.005",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1145",
+        "message": "Safety notice: your vehicle(s) AUR0003266 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.006",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1159",
+        "message": "Safety notice: your vehicle(s) AUR0003189 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.006",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1171",
+        "message": "Safety notice: your vehicle(s) AUR0003200 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.007",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1236",
+        "message": "Safety notice: your vehicle(s) AUR0003183 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.008",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1357",
+        "message": "Safety notice: your vehicle(s) AUR0003182 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.008",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1366",
+        "message": "Safety notice: your vehicle(s) AUR0003192 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.009",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1386",
+        "message": "Safety notice: your vehicle(s) AUR0003358 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.009",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1439",
+        "message": "Safety notice: your vehicle(s) AUR0003179 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.010",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1550",
+        "message": "Safety notice: your vehicle(s) AUR0003178 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.011",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1596",
+        "message": "Safety notice: your vehicle(s) AUR0003289 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.011",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1649",
+        "message": "Safety notice: your vehicle(s) AUR0003275 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.012",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1731",
+        "message": "Safety notice: your vehicle(s) AUR0003198 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.012",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1779",
+        "message": "Safety notice: your vehicle(s) AUR0003237 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.013",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1844",
+        "message": "Safety notice: your vehicle(s) AUR0003346 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.014",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1963",
+        "message": "Safety notice: your vehicle(s) AUR0003279 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.014",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2115",
+        "message": "Safety notice: your vehicle(s) AUR0003246 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.015",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2275",
+        "message": "Safety notice: your vehicle(s) AUR0003181 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.015",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2281",
+        "message": "Safety notice: your vehicle(s) AUR0003241 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.016",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2418",
+        "message": "Safety notice: your vehicle(s) AUR0003191 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.016",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2549",
+        "message": "Safety notice: your vehicle(s) AUR0003194 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.017",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2583",
+        "message": "Safety notice: your vehicle(s) AUR0003249 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.018",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2605",
+        "message": "Safety notice: your vehicle(s) AUR0003284 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.019",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2622",
+        "message": "Safety notice: your vehicle(s) AUR0003290 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.020",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2701",
+        "message": "Safety notice: your vehicle(s) AUR0003199 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.020",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2708",
+        "message": "Safety notice: your vehicle(s) AUR0003197 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.021",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2749",
+        "message": "Safety notice: your vehicle(s) AUR0003269 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.021",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2823",
+        "message": "Safety notice: your vehicle(s) AUR0003342 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.022",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2898",
+        "message": "Safety notice: your vehicle(s) AUR0003265 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.023",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3029",
+        "message": "Safety notice: your vehicle(s) AUR0003253 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3355",
+        "message": "Safety notice: your vehicle(s) AUR0003297 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3697",
+        "message": "Safety notice: your vehicle(s) AUR0003353 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.024",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3771",
+        "message": "Safety notice: your vehicle(s) AUR0003276 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.025",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4033",
+        "message": "Safety notice: your vehicle(s) AUR0003291 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.026",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4096",
+        "message": "Safety notice: your vehicle(s) AUR0003281 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.027",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4180",
+        "message": "Safety notice: your vehicle(s) AUR0003357 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.027",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4244",
+        "message": "Safety notice: your vehicle(s) AUR0003239 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.028",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4249",
+        "message": "Safety notice: your vehicle(s) AUR0003186 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.028",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4447",
+        "message": "Safety notice: your vehicle(s) AUR0003336 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.029",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4522",
+        "message": "Safety notice: your vehicle(s) AUR0003245 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.029",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4595",
+        "message": "Safety notice: your vehicle(s) AUR0003354 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.030",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4863",
+        "message": "Safety notice: your vehicle(s) AUR0003257 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4937",
+        "message": "Safety notice: your vehicle(s) AUR0003261 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5016",
+        "message": "Safety notice: your vehicle(s) AUR0003356 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.031",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5021",
+        "message": "Safety notice: your vehicle(s) AUR0003195 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.032",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5099",
+        "message": "Safety notice: your vehicle(s) AUR0003188 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.032",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5234",
+        "message": "Safety notice: your vehicle(s) AUR0003351 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.033",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5279",
+        "message": "Safety notice: your vehicle(s) AUR0003292 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.033",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5489",
+        "message": "Safety notice: your vehicle(s) AUR0003271 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5623",
+        "message": "Safety notice: your vehicle(s) AUR0003255 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5998",
+        "message": "Safety notice: your vehicle(s) AUR0003335 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.034",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6063",
+        "message": "Safety notice: your vehicle(s) AUR0003251 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.036",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6067",
+        "message": "Safety notice: your vehicle(s) AUR0003350 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.036",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6399",
+        "message": "Safety notice: your vehicle(s) AUR0003247 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.037",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6418",
+        "message": "Safety notice: your vehicle(s) AUR0003344 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.038",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6727",
+        "message": "Safety notice: your vehicle(s) AUR0003234 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.038",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6746",
+        "message": "Safety notice: your vehicle(s) AUR0003278 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.039",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6816",
+        "message": "Safety notice: your vehicle(s) AUR0003244 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.039",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6890",
+        "message": "Safety notice: your vehicle(s) AUR0003248 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:06:00.040",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C7000",
+        "message": "Safety notice: your vehicle(s) AUR0003282 contain a part from quality-held lot LOT-0191 (CHIP-IVI). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

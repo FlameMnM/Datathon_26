@@ -1,0 +1,4899 @@
+{
+  "event": {
+    "event_id": "E-14",
+    "received_at": "2027-03-08T10:58:00",
+    "source": "ops chat",
+    "text": "Quality alert: Atlas says the heavy-duty wiring harness sent to the Texas plant had a moisture contamination. Anything built Monday Feb 22 through Wednesday Feb 24 is suspect."
+  },
+  "category": [
+    "quality_hold"
+  ],
+  "summary": "I1 quality hold on LOT-0017 (HARN-B at P_TX). Actions: crm.notify_customer x94, dealer.stop_sale x36, quality.hold_lot x1; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 449,
+      "output_tokens": 136,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "quality_hold",
+        "summary": "Heavy-duty wiring harness sent to the Texas plant had moisture contamination affecting builds from Monday Feb 22 through Wednesday Feb 24.",
+        "supplier": "Atlas",
+        "part": "heavy-duty wiring harness",
+        "plant": "Texas",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "Monday Feb 22",
+        "date_2": "Wednesday Feb 24",
+        "confirmed_and_specific": true,
+        "reason": "A specific part from a named supplier at a specific plant is defective for a defined date range."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "quality_hold",
+        "summary": "Quality alert: Atlas says the heavy-duty wiring harness sent to the Texas plant had a moisture contamination. Anything built Monday Feb 22 through Wednesday Feb",
+        "supplier": "Atlas",
+        "part": "heavy-duty wiring harness",
+        "plant": "the Texas plant",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "Monday Feb 22",
+        "date_2": "Wednesday Feb 24",
+        "confirmed_and_specific": true,
+        "reason": "keyword rules: quality_hold"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "quality_hold",
+      "summary": "Heavy-duty wiring harness sent to the Texas plant had moisture contamination affecting builds from Monday Feb 22 through Wednesday Feb 24.",
+      "llm_reason": "A specific part from a named supplier at a specific plant is defective for a defined date range.",
+      "dates": {
+        "date_1": "'Monday Feb 22' -> 2027-02-22 (month/day)",
+        "date_2": "'Wednesday Feb 24' -> 2027-02-24 (month/day)"
+      },
+      "resolution": {
+        "part": "'heavy-duty wiring harness' -> HARN-B (exact match 'heavy-duty wiring harness')",
+        "plant": "'Texas' -> P_TX (matched 'the texas plant')",
+        "supplier": "'Atlas' -> SUP-07 (exact match 'atlas')"
+      },
+      "lots": [
+        "LOT-0017"
+      ],
+      "part": "HARN-B",
+      "plant": "P_TX",
+      "grounded": true
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): quality_hold"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "routing [I1] to QualityAgent: lots ['LOT-0017']"
+    },
+    {
+      "agent": "QualityAgent",
+      "step": "LOT-0017: 180 affected vehicles (86 in stock, 94 sold)"
+    }
+  ],
+  "graph_paths": [
+    {
+      "incident": "I1",
+      "title": "LOT-0017 (HARN-B from SUP-07 at P_TX, built 2027-02-22..2027-02-24)",
+      "layers": [
+        {
+          "label": "Lot",
+          "ids": [
+            "LOT-0017"
+          ]
+        },
+        {
+          "edge": "INSTALLED_IN"
+        },
+        {
+          "label": "ProductionOrder",
+          "ids": [
+            "PO-0001",
+            "PO-0002",
+            "PO-0004",
+            "PO-0005",
+            "PO-0007",
+            "PO-0008"
+          ]
+        },
+        {
+          "edge": "BUILT_FROM (reverse)"
+        },
+        {
+          "label": "Vehicle",
+          "ids": [
+            "AUR0000001",
+            "AUR0000002",
+            "AUR0000003",
+            "AUR0000004",
+            "AUR0000005",
+            "AUR0000006",
+            "AUR0000007",
+            "AUR0000008",
+            "AUR0000009",
+            "AUR0000010",
+            "AUR0000011",
+            "AUR0000012",
+            "AUR0000013",
+            "AUR0000014",
+            "AUR0000015",
+            "AUR0000016",
+            "AUR0000017",
+            "AUR0000018",
+            "AUR0000019",
+            "AUR0000020",
+            "AUR0000021",
+            "AUR0000022",
+            "AUR0000023",
+            "AUR0000024",
+            "AUR0000025",
+            "AUR0000026",
+            "AUR0000027",
+            "AUR0000028",
+            "AUR0000029",
+            "AUR0000030",
+            "AUR0000031",
+            "AUR0000032",
+            "AUR0000033",
+            "AUR0000034",
+            "AUR0000035",
+            "AUR0000036",
+            "AUR0000037",
+            "AUR0000038",
+            "AUR0000039",
+            "AUR0000040",
+            "AUR0000041",
+            "AUR0000042",
+            "AUR0000043",
+            "AUR0000044",
+            "AUR0000045",
+            "AUR0000046",
+            "AUR0000047",
+            "AUR0000048",
+            "AUR0000049",
+            "AUR0000050",
+            "AUR0000051",
+            "AUR0000052",
+            "AUR0000053",
+            "AUR0000054",
+            "AUR0000055",
+            "AUR0000056",
+            "AUR0000082",
+            "AUR0000083",
+            "AUR0000084",
+            "AUR0000085",
+            "AUR0000086",
+            "AUR0000087",
+            "AUR0000088",
+            "AUR0000089",
+            "AUR0000090",
+            "AUR0000091",
+            "AUR0000092",
+            "AUR0000093",
+            "AUR0000094",
+            "AUR0000095",
+            "AUR0000096",
+            "AUR0000097",
+            "AUR0000098",
+            "AUR0000099",
+            "AUR0000100",
+            "AUR0000101",
+            "AUR0000102",
+            "AUR0000103",
+            "AUR0000104",
+            "AUR0000105",
+            "AUR0000106",
+            "AUR0000107",
+            "AUR0000108",
+            "AUR0000109",
+            "AUR0000110",
+            "AUR0000111",
+            "AUR0000112",
+            "AUR0000113",
+            "AUR0000114",
+            "AUR0000115",
+            "AUR0000116",
+            "AUR0000117",
+            "AUR0000118",
+            "AUR0000119",
+            "AUR0000120",
+            "AUR0000121",
+            "AUR0000122",
+            "AUR0000123",
+            "AUR0000124",
+            "AUR0000125",
+            "AUR0000126",
+            "AUR0000127",
+            "AUR0000128",
+            "AUR0000129",
+            "AUR0000130",
+            "AUR0000131",
+            "AUR0000132",
+            "AUR0000133",
+            "AUR0000134",
+            "AUR0000135",
+            "AUR0000136",
+            "AUR0000137",
+            "AUR0000138",
+            "AUR0000139",
+            "AUR0000169",
+            "AUR0000170",
+            "AUR0000171",
+            "AUR0000172",
+            "AUR0000173",
+            "AUR0000174",
+            "AUR0000175",
+            "AUR0000176",
+            "AUR0000177",
+            "AUR0000178",
+            "AUR0000179",
+            "AUR0000180",
+            "AUR0000181",
+            "AUR0000182",
+            "AUR0000183",
+            "AUR0000184",
+            "AUR0000185",
+            "AUR0000186",
+            "AUR0000187",
+            "AUR0000188",
+            "AUR0000189",
+            "AUR0000190",
+            "AUR0000191",
+            "AUR0000192",
+            "AUR0000193",
+            "AUR0000194",
+            "AUR0000195",
+            "AUR0000196",
+            "AUR0000197",
+            "AUR0000198",
+            "AUR0000199",
+            "AUR0000200",
+            "AUR0000201",
+            "AUR0000202",
+            "AUR0000203",
+            "AUR0000204",
+            "AUR0000205",
+            "AUR0000206",
+            "AUR0000207",
+            "AUR0000208",
+            "AUR0000209",
+            "AUR0000210",
+            "AUR0000211",
+            "AUR0000212",
+            "AUR0000213",
+            "AUR0000214",
+            "AUR0000215",
+            "AUR0000216",
+            "AUR0000217",
+            "AUR0000218",
+            "AUR0000219",
+            "AUR0000220",
+            "AUR0000221",
+            "AUR0000222",
+            "AUR0000223",
+            "AUR0000224",
+            "AUR0000225",
+            "AUR0000226",
+            "AUR0000227",
+            "AUR0000228",
+            "AUR0000229",
+            "AUR0000230",
+            "AUR0000231",
+            "AUR0000232",
+            "AUR0000233",
+            "AUR0000234"
+          ]
+        },
+        {
+          "edge": "AT_DEALER (in_stock) / OWNED_BY (sold)"
+        },
+        {
+          "label": "Dealer",
+          "ids": [
+            "D02",
+            "D03",
+            "D04",
+            "D06",
+            "D07",
+            "D08",
+            "D10",
+            "D12",
+            "D13",
+            "D14",
+            "D16",
+            "D17",
+            "D19",
+            "D20",
+            "D21",
+            "D22",
+            "D23",
+            "D25",
+            "D26",
+            "D27",
+            "D28",
+            "D29",
+            "D31",
+            "D32",
+            "D33",
+            "D34",
+            "D36",
+            "D37",
+            "D38",
+            "D39",
+            "D43",
+            "D44",
+            "D45",
+            "D46",
+            "D47",
+            "D48"
+          ]
+        },
+        {
+          "label": "Customer",
+          "ids": [
+            "C0130",
+            "C0226",
+            "C0419",
+            "C0459",
+            "C0630",
+            "C0641",
+            "C0643",
+            "C0664",
+            "C0665",
+            "C0789",
+            "C0804",
+            "C0832",
+            "C0871",
+            "C1006",
+            "C1218",
+            "C1233",
+            "C1244",
+            "C1367",
+            "C1373",
+            "C1380",
+            "C1508",
+            "C1516",
+            "C1610",
+            "C1629",
+            "C1660",
+            "C1665",
+            "C1735",
+            "C1751",
+            "C1799",
+            "C1800",
+            "C1808",
+            "C1848",
+            "C1876",
+            "C2123",
+            "C2480",
+            "C2499",
+            "C2655",
+            "C2789",
+            "C2919",
+            "C2945",
+            "C3102",
+            "C3196",
+            "C3197",
+            "C3200",
+            "C3277",
+            "C3512",
+            "C3527",
+            "C3634",
+            "C3788",
+            "C3821",
+            "C3896",
+            "C3913",
+            "C3949",
+            "C4029",
+            "C4064",
+            "C4203",
+            "C4248",
+            "C4261",
+            "C4439",
+            "C4449",
+            "C4598",
+            "C4614",
+            "C4711",
+            "C4961",
+            "C5019",
+            "C5077",
+            "C5125",
+            "C5353",
+            "C5356",
+            "C5360",
+            "C5388",
+            "C5443",
+            "C5533",
+            "C5603",
+            "C5654",
+            "C5677",
+            "C5701",
+            "C5751",
+            "C5898",
+            "C6091",
+            "C6168",
+            "C6212",
+            "C6288",
+            "C6446",
+            "C6447",
+            "C6448",
+            "C6490",
+            "C6561",
+            "C6563",
+            "C6624",
+            "C6676",
+            "C6796",
+            "C6829",
+            "C6847"
+          ]
+        }
+      ]
+    }
+  ],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:05:55.400",
+      "agent": "QualityAgent",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0017"
+      },
+      "why": "defective lot",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.401",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0000083",
+          "AUR0000220"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.402",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0000008",
+          "AUR0000028",
+          "AUR0000090",
+          "AUR0000226"
+        ]
+      },
+      "why": "4 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.403",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0000085",
+          "AUR0000191"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.403",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0000024",
+          "AUR0000027",
+          "AUR0000052",
+          "AUR0000082",
+          "AUR0000188"
+        ]
+      },
+      "why": "5 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.404",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0000020",
+          "AUR0000097"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.405",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0000013",
+          "AUR0000117",
+          "AUR0000131",
+          "AUR0000171",
+          "AUR0000215"
+        ]
+      },
+      "why": "5 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.405",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0000210",
+          "AUR0000229"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.406",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0000046"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.407",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0000047",
+          "AUR0000198"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.408",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D14",
+        "vins": [
+          "AUR0000120",
+          "AUR0000195"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.409",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D16",
+        "vins": [
+          "AUR0000136"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.410",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D17",
+        "vins": [
+          "AUR0000107"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.410",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D19",
+        "vins": [
+          "AUR0000105"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.411",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0000042",
+          "AUR0000051"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.412",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0000088",
+          "AUR0000089",
+          "AUR0000222"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.413",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0000200",
+          "AUR0000225"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.413",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0000010",
+          "AUR0000173",
+          "AUR0000230"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.414",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0000011",
+          "AUR0000134",
+          "AUR0000178",
+          "AUR0000187",
+          "AUR0000204",
+          "AUR0000207"
+        ]
+      },
+      "why": "6 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.415",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0000017",
+          "AUR0000096"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.416",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0000003",
+          "AUR0000186"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.417",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0000022"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.417",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D29",
+        "vins": [
+          "AUR0000034"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.418",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0000031",
+          "AUR0000132"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.418",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0000100",
+          "AUR0000103",
+          "AUR0000169",
+          "AUR0000201"
+        ]
+      },
+      "why": "4 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.419",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D33",
+        "vins": [
+          "AUR0000111"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.419",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D34",
+        "vins": [
+          "AUR0000006",
+          "AUR0000019",
+          "AUR0000030"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.420",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D36",
+        "vins": [
+          "AUR0000053",
+          "AUR0000172"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.421",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D37",
+        "vins": [
+          "AUR0000015"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.422",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D38",
+        "vins": [
+          "AUR0000174",
+          "AUR0000209"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.422",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0000025",
+          "AUR0000123"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.423",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D43",
+        "vins": [
+          "AUR0000126",
+          "AUR0000137",
+          "AUR0000217"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.424",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0000109",
+          "AUR0000110"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.425",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0000002",
+          "AUR0000023",
+          "AUR0000035",
+          "AUR0000121",
+          "AUR0000190",
+          "AUR0000194",
+          "AUR0000231"
+        ]
+      },
+      "why": "7 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.425",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D46",
+        "vins": [
+          "AUR0000007",
+          "AUR0000093",
+          "AUR0000197"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.426",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D47",
+        "vins": [
+          "AUR0000044"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.426",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D48",
+        "vins": [
+          "AUR0000219"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.427",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0130",
+        "message": "Safety notice: your vehicle(s) AUR0000032 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.428",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0226",
+        "message": "Safety notice: your vehicle(s) AUR0000212 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.428",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0419",
+        "message": "Safety notice: your vehicle(s) AUR0000114 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.429",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0459",
+        "message": "Safety notice: your vehicle(s) AUR0000116 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.430",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0630",
+        "message": "Safety notice: your vehicle(s) AUR0000037 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.431",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0641",
+        "message": "Safety notice: your vehicle(s) AUR0000099 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.431",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0643",
+        "message": "Safety notice: your vehicle(s) AUR0000203 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.432",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0664",
+        "message": "Safety notice: your vehicle(s) AUR0000177 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.433",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0665",
+        "message": "Safety notice: your vehicle(s) AUR0000128 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.434",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0789",
+        "message": "Safety notice: your vehicle(s) AUR0000021 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.434",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0804",
+        "message": "Safety notice: your vehicle(s) AUR0000227 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.435",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0832",
+        "message": "Safety notice: your vehicle(s) AUR0000005 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.435",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0871",
+        "message": "Safety notice: your vehicle(s) AUR0000206 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.436",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1006",
+        "message": "Safety notice: your vehicle(s) AUR0000179 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.436",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1218",
+        "message": "Safety notice: your vehicle(s) AUR0000001 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.437",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1233",
+        "message": "Safety notice: your vehicle(s) AUR0000095 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.437",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1244",
+        "message": "Safety notice: your vehicle(s) AUR0000055 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.438",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1367",
+        "message": "Safety notice: your vehicle(s) AUR0000130 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.438",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1373",
+        "message": "Safety notice: your vehicle(s) AUR0000127 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.439",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1380",
+        "message": "Safety notice: your vehicle(s) AUR0000183 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.439",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1508",
+        "message": "Safety notice: your vehicle(s) AUR0000113 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1516",
+        "message": "Safety notice: your vehicle(s) AUR0000102 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1610",
+        "message": "Safety notice: your vehicle(s) AUR0000133 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1629",
+        "message": "Safety notice: your vehicle(s) AUR0000233 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.441",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1660",
+        "message": "Safety notice: your vehicle(s) AUR0000048 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.442",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1665",
+        "message": "Safety notice: your vehicle(s) AUR0000214 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.442",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1735",
+        "message": "Safety notice: your vehicle(s) AUR0000036 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.443",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1751",
+        "message": "Safety notice: your vehicle(s) AUR0000018 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.444",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1799",
+        "message": "Safety notice: your vehicle(s) AUR0000234 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.445",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1800",
+        "message": "Safety notice: your vehicle(s) AUR0000086 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.446",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1808",
+        "message": "Safety notice: your vehicle(s) AUR0000138 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.446",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1848",
+        "message": "Safety notice: your vehicle(s) AUR0000232 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.447",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1876",
+        "message": "Safety notice: your vehicle(s) AUR0000108 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.447",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2123",
+        "message": "Safety notice: your vehicle(s) AUR0000223 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.448",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2480",
+        "message": "Safety notice: your vehicle(s) AUR0000135 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.449",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2499",
+        "message": "Safety notice: your vehicle(s) AUR0000115 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.449",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2655",
+        "message": "Safety notice: your vehicle(s) AUR0000119 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.450",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2789",
+        "message": "Safety notice: your vehicle(s) AUR0000012 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.451",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2919",
+        "message": "Safety notice: your vehicle(s) AUR0000216 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.451",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2945",
+        "message": "Safety notice: your vehicle(s) AUR0000228 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.452",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3102",
+        "message": "Safety notice: your vehicle(s) AUR0000189 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.453",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3196",
+        "message": "Safety notice: your vehicle(s) AUR0000098 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.453",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3197",
+        "message": "Safety notice: your vehicle(s) AUR0000112 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.454",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3200",
+        "message": "Safety notice: your vehicle(s) AUR0000122 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.455",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3277",
+        "message": "Safety notice: your vehicle(s) AUR0000208 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.455",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3512",
+        "message": "Safety notice: your vehicle(s) AUR0000218 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.456",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3527",
+        "message": "Safety notice: your vehicle(s) AUR0000038 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.456",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3634",
+        "message": "Safety notice: your vehicle(s) AUR0000175 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.457",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3788",
+        "message": "Safety notice: your vehicle(s) AUR0000221 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.458",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3821",
+        "message": "Safety notice: your vehicle(s) AUR0000026 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.459",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3896",
+        "message": "Safety notice: your vehicle(s) AUR0000040 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.459",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3913",
+        "message": "Safety notice: your vehicle(s) AUR0000094 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.460",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3949",
+        "message": "Safety notice: your vehicle(s) AUR0000016 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.460",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4029",
+        "message": "Safety notice: your vehicle(s) AUR0000050 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.461",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4064",
+        "message": "Safety notice: your vehicle(s) AUR0000039 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.462",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4203",
+        "message": "Safety notice: your vehicle(s) AUR0000106 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.462",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4248",
+        "message": "Safety notice: your vehicle(s) AUR0000125 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4261",
+        "message": "Safety notice: your vehicle(s) AUR0000182 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4439",
+        "message": "Safety notice: your vehicle(s) AUR0000084 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4449",
+        "message": "Safety notice: your vehicle(s) AUR0000199 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.464",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4598",
+        "message": "Safety notice: your vehicle(s) AUR0000139 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.464",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4614",
+        "message": "Safety notice: your vehicle(s) AUR0000043 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.465",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4711",
+        "message": "Safety notice: your vehicle(s) AUR0000056 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.465",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4961",
+        "message": "Safety notice: your vehicle(s) AUR0000101 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.466",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5019",
+        "message": "Safety notice: your vehicle(s) AUR0000004 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.466",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5077",
+        "message": "Safety notice: your vehicle(s) AUR0000224 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.467",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5125",
+        "message": "Safety notice: your vehicle(s) AUR0000192 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.467",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5353",
+        "message": "Safety notice: your vehicle(s) AUR0000033 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.468",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5356",
+        "message": "Safety notice: your vehicle(s) AUR0000129 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.468",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5360",
+        "message": "Safety notice: your vehicle(s) AUR0000185 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.469",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5388",
+        "message": "Safety notice: your vehicle(s) AUR0000014 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.469",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5443",
+        "message": "Safety notice: your vehicle(s) AUR0000104 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.470",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5533",
+        "message": "Safety notice: your vehicle(s) AUR0000202 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.470",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5603",
+        "message": "Safety notice: your vehicle(s) AUR0000045 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.471",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5654",
+        "message": "Safety notice: your vehicle(s) AUR0000087 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.471",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5677",
+        "message": "Safety notice: your vehicle(s) AUR0000091 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5701",
+        "message": "Safety notice: your vehicle(s) AUR0000118 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5751",
+        "message": "Safety notice: your vehicle(s) AUR0000181 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5898",
+        "message": "Safety notice: your vehicle(s) AUR0000184 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.473",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6091",
+        "message": "Safety notice: your vehicle(s) AUR0000196 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.473",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6168",
+        "message": "Safety notice: your vehicle(s) AUR0000054 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.474",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6212",
+        "message": "Safety notice: your vehicle(s) AUR0000205 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.475",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6288",
+        "message": "Safety notice: your vehicle(s) AUR0000092 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.475",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6446",
+        "message": "Safety notice: your vehicle(s) AUR0000124 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.476",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6447",
+        "message": "Safety notice: your vehicle(s) AUR0000009 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.477",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6448",
+        "message": "Safety notice: your vehicle(s) AUR0000176 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.477",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6490",
+        "message": "Safety notice: your vehicle(s) AUR0000213 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.478",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6561",
+        "message": "Safety notice: your vehicle(s) AUR0000170 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.478",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6563",
+        "message": "Safety notice: your vehicle(s) AUR0000029 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.479",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6624",
+        "message": "Safety notice: your vehicle(s) AUR0000049 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.479",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6676",
+        "message": "Safety notice: your vehicle(s) AUR0000041 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.480",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6796",
+        "message": "Safety notice: your vehicle(s) AUR0000180 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.481",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6829",
+        "message": "Safety notice: your vehicle(s) AUR0000193 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.482",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6847",
+        "message": "Safety notice: your vehicle(s) AUR0000211 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "Lot LOT-0017 held; 86 unsold vehicles stopped from sale, 94 owners contacted.",
+    "changed": [
+      "Lot LOT-0017 on quality hold; stop-sale on 86 in-stock vehicles at 36 dealers; 94 owners notified."
+    ],
+    "unchanged": [
+      "3 other HARN-B lots at P_TX (LOT-0018, LOT-0019, LOT-0020) are outside the suspect build window and were not held.",
+      "88 vehicles built at P_TX on the same days use models without HARN-B and were not touched.",
+      "No production orders were rescheduled and no loaners assigned (not part of a quality hold)."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:05:55.400",
+      "agent": "QualityAgent",
+      "tool": "quality.hold_lot",
+      "args": {
+        "lot_id": "LOT-0017"
+      },
+      "why": "defective lot",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.401",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D02",
+        "vins": [
+          "AUR0000083",
+          "AUR0000220"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.402",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D03",
+        "vins": [
+          "AUR0000008",
+          "AUR0000028",
+          "AUR0000090",
+          "AUR0000226"
+        ]
+      },
+      "why": "4 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.403",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D04",
+        "vins": [
+          "AUR0000085",
+          "AUR0000191"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.403",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D06",
+        "vins": [
+          "AUR0000024",
+          "AUR0000027",
+          "AUR0000052",
+          "AUR0000082",
+          "AUR0000188"
+        ]
+      },
+      "why": "5 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.404",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D07",
+        "vins": [
+          "AUR0000020",
+          "AUR0000097"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.405",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D08",
+        "vins": [
+          "AUR0000013",
+          "AUR0000117",
+          "AUR0000131",
+          "AUR0000171",
+          "AUR0000215"
+        ]
+      },
+      "why": "5 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.405",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D10",
+        "vins": [
+          "AUR0000210",
+          "AUR0000229"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.406",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D12",
+        "vins": [
+          "AUR0000046"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.407",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D13",
+        "vins": [
+          "AUR0000047",
+          "AUR0000198"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.408",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D14",
+        "vins": [
+          "AUR0000120",
+          "AUR0000195"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.409",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D16",
+        "vins": [
+          "AUR0000136"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.410",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D17",
+        "vins": [
+          "AUR0000107"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.410",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D19",
+        "vins": [
+          "AUR0000105"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.411",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D20",
+        "vins": [
+          "AUR0000042",
+          "AUR0000051"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.412",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D21",
+        "vins": [
+          "AUR0000088",
+          "AUR0000089",
+          "AUR0000222"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.413",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D22",
+        "vins": [
+          "AUR0000200",
+          "AUR0000225"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.413",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D23",
+        "vins": [
+          "AUR0000010",
+          "AUR0000173",
+          "AUR0000230"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.414",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D25",
+        "vins": [
+          "AUR0000011",
+          "AUR0000134",
+          "AUR0000178",
+          "AUR0000187",
+          "AUR0000204",
+          "AUR0000207"
+        ]
+      },
+      "why": "6 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.415",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D26",
+        "vins": [
+          "AUR0000017",
+          "AUR0000096"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.416",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D27",
+        "vins": [
+          "AUR0000003",
+          "AUR0000186"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.417",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D28",
+        "vins": [
+          "AUR0000022"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.417",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D29",
+        "vins": [
+          "AUR0000034"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.418",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D31",
+        "vins": [
+          "AUR0000031",
+          "AUR0000132"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.418",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D32",
+        "vins": [
+          "AUR0000100",
+          "AUR0000103",
+          "AUR0000169",
+          "AUR0000201"
+        ]
+      },
+      "why": "4 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.419",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D33",
+        "vins": [
+          "AUR0000111"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.419",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D34",
+        "vins": [
+          "AUR0000006",
+          "AUR0000019",
+          "AUR0000030"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.420",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D36",
+        "vins": [
+          "AUR0000053",
+          "AUR0000172"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.421",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D37",
+        "vins": [
+          "AUR0000015"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.422",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D38",
+        "vins": [
+          "AUR0000174",
+          "AUR0000209"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.422",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D39",
+        "vins": [
+          "AUR0000025",
+          "AUR0000123"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.423",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D43",
+        "vins": [
+          "AUR0000126",
+          "AUR0000137",
+          "AUR0000217"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.424",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D44",
+        "vins": [
+          "AUR0000109",
+          "AUR0000110"
+        ]
+      },
+      "why": "2 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.425",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D45",
+        "vins": [
+          "AUR0000002",
+          "AUR0000023",
+          "AUR0000035",
+          "AUR0000121",
+          "AUR0000190",
+          "AUR0000194",
+          "AUR0000231"
+        ]
+      },
+      "why": "7 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.425",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D46",
+        "vins": [
+          "AUR0000007",
+          "AUR0000093",
+          "AUR0000197"
+        ]
+      },
+      "why": "3 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.426",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D47",
+        "vins": [
+          "AUR0000044"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.426",
+      "agent": "QualityAgent",
+      "tool": "dealer.stop_sale",
+      "args": {
+        "dealer_id": "D48",
+        "vins": [
+          "AUR0000219"
+        ]
+      },
+      "why": "1 unsold vehicles from LOT-0017",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.427",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0130",
+        "message": "Safety notice: your vehicle(s) AUR0000032 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.428",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0226",
+        "message": "Safety notice: your vehicle(s) AUR0000212 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.428",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0419",
+        "message": "Safety notice: your vehicle(s) AUR0000114 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.429",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0459",
+        "message": "Safety notice: your vehicle(s) AUR0000116 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.430",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0630",
+        "message": "Safety notice: your vehicle(s) AUR0000037 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.431",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0641",
+        "message": "Safety notice: your vehicle(s) AUR0000099 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.431",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0643",
+        "message": "Safety notice: your vehicle(s) AUR0000203 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.432",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0664",
+        "message": "Safety notice: your vehicle(s) AUR0000177 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.433",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0665",
+        "message": "Safety notice: your vehicle(s) AUR0000128 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.434",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0789",
+        "message": "Safety notice: your vehicle(s) AUR0000021 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.434",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0804",
+        "message": "Safety notice: your vehicle(s) AUR0000227 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.435",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0832",
+        "message": "Safety notice: your vehicle(s) AUR0000005 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.435",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C0871",
+        "message": "Safety notice: your vehicle(s) AUR0000206 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.436",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1006",
+        "message": "Safety notice: your vehicle(s) AUR0000179 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.436",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1218",
+        "message": "Safety notice: your vehicle(s) AUR0000001 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.437",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1233",
+        "message": "Safety notice: your vehicle(s) AUR0000095 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.437",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1244",
+        "message": "Safety notice: your vehicle(s) AUR0000055 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.438",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1367",
+        "message": "Safety notice: your vehicle(s) AUR0000130 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.438",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1373",
+        "message": "Safety notice: your vehicle(s) AUR0000127 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.439",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1380",
+        "message": "Safety notice: your vehicle(s) AUR0000183 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.439",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1508",
+        "message": "Safety notice: your vehicle(s) AUR0000113 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1516",
+        "message": "Safety notice: your vehicle(s) AUR0000102 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1610",
+        "message": "Safety notice: your vehicle(s) AUR0000133 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.440",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1629",
+        "message": "Safety notice: your vehicle(s) AUR0000233 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.441",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1660",
+        "message": "Safety notice: your vehicle(s) AUR0000048 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.442",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1665",
+        "message": "Safety notice: your vehicle(s) AUR0000214 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.442",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1735",
+        "message": "Safety notice: your vehicle(s) AUR0000036 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.443",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1751",
+        "message": "Safety notice: your vehicle(s) AUR0000018 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.444",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1799",
+        "message": "Safety notice: your vehicle(s) AUR0000234 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.445",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1800",
+        "message": "Safety notice: your vehicle(s) AUR0000086 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.446",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1808",
+        "message": "Safety notice: your vehicle(s) AUR0000138 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.446",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1848",
+        "message": "Safety notice: your vehicle(s) AUR0000232 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.447",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C1876",
+        "message": "Safety notice: your vehicle(s) AUR0000108 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.447",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2123",
+        "message": "Safety notice: your vehicle(s) AUR0000223 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.448",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2480",
+        "message": "Safety notice: your vehicle(s) AUR0000135 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.449",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2499",
+        "message": "Safety notice: your vehicle(s) AUR0000115 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.449",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2655",
+        "message": "Safety notice: your vehicle(s) AUR0000119 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.450",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2789",
+        "message": "Safety notice: your vehicle(s) AUR0000012 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.451",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2919",
+        "message": "Safety notice: your vehicle(s) AUR0000216 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.451",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C2945",
+        "message": "Safety notice: your vehicle(s) AUR0000228 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.452",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3102",
+        "message": "Safety notice: your vehicle(s) AUR0000189 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.453",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3196",
+        "message": "Safety notice: your vehicle(s) AUR0000098 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.453",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3197",
+        "message": "Safety notice: your vehicle(s) AUR0000112 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.454",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3200",
+        "message": "Safety notice: your vehicle(s) AUR0000122 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.455",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3277",
+        "message": "Safety notice: your vehicle(s) AUR0000208 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.455",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3512",
+        "message": "Safety notice: your vehicle(s) AUR0000218 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.456",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3527",
+        "message": "Safety notice: your vehicle(s) AUR0000038 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.456",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3634",
+        "message": "Safety notice: your vehicle(s) AUR0000175 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.457",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3788",
+        "message": "Safety notice: your vehicle(s) AUR0000221 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.458",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3821",
+        "message": "Safety notice: your vehicle(s) AUR0000026 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.459",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3896",
+        "message": "Safety notice: your vehicle(s) AUR0000040 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.459",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3913",
+        "message": "Safety notice: your vehicle(s) AUR0000094 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.460",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C3949",
+        "message": "Safety notice: your vehicle(s) AUR0000016 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.460",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4029",
+        "message": "Safety notice: your vehicle(s) AUR0000050 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.461",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4064",
+        "message": "Safety notice: your vehicle(s) AUR0000039 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.462",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4203",
+        "message": "Safety notice: your vehicle(s) AUR0000106 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.462",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4248",
+        "message": "Safety notice: your vehicle(s) AUR0000125 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4261",
+        "message": "Safety notice: your vehicle(s) AUR0000182 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4439",
+        "message": "Safety notice: your vehicle(s) AUR0000084 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.463",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4449",
+        "message": "Safety notice: your vehicle(s) AUR0000199 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.464",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4598",
+        "message": "Safety notice: your vehicle(s) AUR0000139 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.464",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4614",
+        "message": "Safety notice: your vehicle(s) AUR0000043 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.465",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4711",
+        "message": "Safety notice: your vehicle(s) AUR0000056 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.465",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C4961",
+        "message": "Safety notice: your vehicle(s) AUR0000101 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.466",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5019",
+        "message": "Safety notice: your vehicle(s) AUR0000004 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.466",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5077",
+        "message": "Safety notice: your vehicle(s) AUR0000224 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.467",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5125",
+        "message": "Safety notice: your vehicle(s) AUR0000192 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.467",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5353",
+        "message": "Safety notice: your vehicle(s) AUR0000033 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.468",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5356",
+        "message": "Safety notice: your vehicle(s) AUR0000129 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.468",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5360",
+        "message": "Safety notice: your vehicle(s) AUR0000185 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.469",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5388",
+        "message": "Safety notice: your vehicle(s) AUR0000014 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.469",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5443",
+        "message": "Safety notice: your vehicle(s) AUR0000104 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.470",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5533",
+        "message": "Safety notice: your vehicle(s) AUR0000202 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.470",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5603",
+        "message": "Safety notice: your vehicle(s) AUR0000045 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.471",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5654",
+        "message": "Safety notice: your vehicle(s) AUR0000087 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.471",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5677",
+        "message": "Safety notice: your vehicle(s) AUR0000091 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5701",
+        "message": "Safety notice: your vehicle(s) AUR0000118 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5751",
+        "message": "Safety notice: your vehicle(s) AUR0000181 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.472",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C5898",
+        "message": "Safety notice: your vehicle(s) AUR0000184 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.473",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6091",
+        "message": "Safety notice: your vehicle(s) AUR0000196 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.473",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6168",
+        "message": "Safety notice: your vehicle(s) AUR0000054 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.474",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6212",
+        "message": "Safety notice: your vehicle(s) AUR0000205 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.475",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6288",
+        "message": "Safety notice: your vehicle(s) AUR0000092 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.475",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6446",
+        "message": "Safety notice: your vehicle(s) AUR0000124 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.476",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6447",
+        "message": "Safety notice: your vehicle(s) AUR0000009 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.477",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6448",
+        "message": "Safety notice: your vehicle(s) AUR0000176 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.477",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6490",
+        "message": "Safety notice: your vehicle(s) AUR0000213 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.478",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6561",
+        "message": "Safety notice: your vehicle(s) AUR0000170 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.478",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6563",
+        "message": "Safety notice: your vehicle(s) AUR0000029 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.479",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6624",
+        "message": "Safety notice: your vehicle(s) AUR0000049 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.479",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6676",
+        "message": "Safety notice: your vehicle(s) AUR0000041 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.480",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6796",
+        "message": "Safety notice: your vehicle(s) AUR0000180 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.481",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6829",
+        "message": "Safety notice: your vehicle(s) AUR0000193 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:55.482",
+      "agent": "QualityAgent",
+      "tool": "crm.notify_customer",
+      "args": {
+        "customer_id": "C6847",
+        "message": "Safety notice: your vehicle(s) AUR0000211 contain a part from quality-held lot LOT-0017 (HARN-B). Please contact your dealer."
+      },
+      "why": "owner of a sold affected vehicle",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

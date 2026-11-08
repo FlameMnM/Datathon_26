@@ -1,0 +1,85 @@
+{
+  "event": {
+    "event_id": "E-06",
+    "received_at": "2027-03-08T08:42:00",
+    "source": "news wire",
+    "text": "Dealer Little Rock, AR asks where to find the new brochure PDF."
+  },
+  "category": [
+    "noise"
+  ],
+  "summary": "I1 noise - not about operations, no action. Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 426,
+      "output_tokens": 95,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "noise",
+        "summary": "Dealer Little Rock, AR asks where to find the new brochure PDF.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "This is a general inquiry about marketing materials and is not related to manufacturing operations."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "noise",
+        "summary": "Dealer Little Rock, AR asks where to find the new brochure PDF.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: noise"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "noise",
+      "summary": "Dealer Little Rock, AR asks where to find the new brochure PDF.",
+      "llm_reason": "This is a general inquiry about marketing materials and is not related to manufacturing operations.",
+      "reason": "This is a general inquiry about marketing materials and is not related to manufacturing operations."
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): noise"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "[I1] noise: This is a general inquiry about marketing materials and is not related to manufacturing operations. -> no action"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [],
+  "issues": [],
+  "impact": {
+    "headline": "No operational impact.",
+    "changed": [
+      "Nothing. No production order, dealer, customer, loaner, lot or vehicle record was written."
+    ],
+    "unchanged": [
+      "All 540 production orders, 50 dealers, all loaner pools and all 364 lots are untouched."
+    ]
+  },
+  "actions": []
+}

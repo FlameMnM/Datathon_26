@@ -1,0 +1,8 @@
+[
+ {"event_id": "X-01", "received_at": "2027-03-08T12:00:00", "source": "explainer: supplier delay", "text": "Battery packs are running late. The line is waiting."},
+ {"event_id": "X-02", "received_at": "2027-03-08T12:05:00", "source": "explainer: plant outage", "text": "The assembly plant is down through Wednesday."},
+ {"event_id": "X-03", "received_at": "2027-03-08T12:10:00", "source": "explainer: quality hold", "text": "Quality confirmed a defective battery lot."},
+ {"event_id": "X-04", "received_at": "2027-03-08T12:15:00", "source": "explainer: noise", "text": "Can someone send me the latest marketing brochure?"},
+ {"event_id": "X-05", "received_at": "2027-03-08T12:20:00", "source": "explainer: rumor", "text": "Heard there might be trouble at one of the plants?"},
+ {"event_id": "X-06", "received_at": "2027-03-08T12:25:00", "source": "explainer: compound", "text": "Plant is offline, and the battery shipment is delayed."}
+]

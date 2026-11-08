@@ -1,0 +1,97 @@
+{
+  "event": {
+    "event_id": "X-06",
+    "received_at": "2027-03-08T12:25:00",
+    "source": "explainer: compound",
+    "text": "Plant is offline, and the battery shipment is delayed."
+  },
+  "category": [
+    "unconfirmed"
+  ],
+  "summary": "I1 unconfirmed - escalated to a human, no operational change (keyword rules: unconfirmed). Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "rules",
+    "model": null,
+    "note": "rule-based extractor selected",
+    "raw": [
+      {
+        "kind": "unconfirmed",
+        "summary": "Plant is offline, and the battery shipment is delayed.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: unconfirmed"
+      }
+    ]
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "unconfirmed",
+      "summary": "Plant is offline, and the battery shipment is delayed.",
+      "llm_reason": "keyword rules: unconfirmed",
+      "reason": "keyword rules: unconfirmed"
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (rules): 1 incident(s): unconfirmed"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "escalated 1 unclear item(s) to a human; no write actions"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:06:57.902",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Plant is offline, and the battery shipment is delayed. (keyword rules: unconfirmed)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "No operational impact. Handed to a human for review.",
+    "changed": [
+      "Nothing. No production order, dealer, customer, loaner, lot or vehicle record was written.",
+      "One escalation to a human (not an operational change)."
+    ],
+    "unchanged": [
+      "All 540 production orders, 50 dealers, all loaner pools and all 364 lots are untouched."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:06:57.902",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Plant is offline, and the battery shipment is delayed. (keyword rules: unconfirmed)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

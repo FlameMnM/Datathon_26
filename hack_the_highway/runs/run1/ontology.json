@@ -1,0 +1,131 @@
+{
+  "classes": {
+    "Supplier": "External parts supplier (suppliers.csv)",
+    "Part": "Component in a bill of materials (parts.csv)",
+    "Model": "Vehicle model (models.csv)",
+    "Plant": "Assembly plant with slots_per_day build capacity (plants.csv)",
+    "Shipment": "Inbound shipment of a part to a plant with an ETA (inbound_shipments.csv)",
+    "Lot": "Part lot consumed at a plant over a build window (part_lots.csv)",
+    "ProductionOrder": "Daily build order of one model at one plant (production_orders.csv)",
+    "CustomerOrder": "Customer purchase promised from a production order (customer_orders.csv)",
+    "Customer": "Buyer / owner with loyalty tier (customers.csv)",
+    "Dealer": "Dealership with a loaner pool (dealers.csv, loaners.csv)",
+    "Vehicle": "Finished vehicle by VIN, in stock or sold (finished_vehicles.csv)",
+    "Alias": "Free-text name variant (aliases.csv)"
+  },
+  "relations": [
+    [
+      "Supplier",
+      "SUPPLIES",
+      "Part"
+    ],
+    [
+      "Shipment",
+      "SHIPPED_BY",
+      "Supplier"
+    ],
+    [
+      "Shipment",
+      "CARRIES",
+      "Part"
+    ],
+    [
+      "Shipment",
+      "DELIVERS_TO",
+      "Plant"
+    ],
+    [
+      "Model",
+      "HAS_PART",
+      "Part"
+    ],
+    [
+      "Plant",
+      "BUILDS",
+      "Model"
+    ],
+    [
+      "ProductionOrder",
+      "BUILT_AT",
+      "Plant"
+    ],
+    [
+      "ProductionOrder",
+      "OF_MODEL",
+      "Model"
+    ],
+    [
+      "CustomerOrder",
+      "FULFILLED_BY",
+      "ProductionOrder"
+    ],
+    [
+      "CustomerOrder",
+      "VIA_DEALER",
+      "Dealer"
+    ],
+    [
+      "CustomerOrder",
+      "PLACED_BY",
+      "Customer"
+    ],
+    [
+      "Lot",
+      "OF_PART",
+      "Part"
+    ],
+    [
+      "Lot",
+      "MADE_BY",
+      "Supplier"
+    ],
+    [
+      "Lot",
+      "CONSUMED_AT",
+      "Plant"
+    ],
+    [
+      "Lot",
+      "INSTALLED_IN",
+      "ProductionOrder"
+    ],
+    [
+      "Vehicle",
+      "BUILT_FROM",
+      "ProductionOrder"
+    ],
+    [
+      "Vehicle",
+      "AT_DEALER",
+      "Dealer"
+    ],
+    [
+      "Vehicle",
+      "OWNED_BY",
+      "Customer"
+    ],
+    [
+      "Alias",
+      "REFERS_TO",
+      "*"
+    ]
+  ],
+  "stats": {
+    "nodes": 17040,
+    "edges": 28251,
+    "by_type": {
+      "Alias": 61,
+      "Customer": 7000,
+      "CustomerOrder": 3263,
+      "Dealer": 50,
+      "Lot": 364,
+      "Model": 6,
+      "Part": 20,
+      "Plant": 6,
+      "ProductionOrder": 540,
+      "Shipment": 364,
+      "Supplier": 18,
+      "Vehicle": 5348
+    }
+  }
+}

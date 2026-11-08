@@ -1,0 +1,5 @@
+{"event_id": "X-01", "tool": "escalate", "args": {"reason": "Unconfirmed / non-specific report, no operational change made: Battery packs are running late. The line is waiting. (keyword rules: unconfirmed)"}, "ok": true}
+{"event_id": "X-02", "tool": "escalate", "args": {"reason": "Unconfirmed / non-specific report, no operational change made: The assembly plant is down through Wednesday. (keyword rules: unconfirmed)"}, "ok": true}
+{"event_id": "X-03", "tool": "escalate", "args": {"reason": "Unconfirmed / non-specific report, no operational change made: Quality confirmed a defective battery lot. (keyword rules: unconfirmed)"}, "ok": true}
+{"event_id": "X-05", "tool": "escalate", "args": {"reason": "Unconfirmed / non-specific report, no operational change made: Heard there might be trouble at one of the plants? (keyword rules: unconfirmed)"}, "ok": true}
+{"event_id": "X-06", "tool": "escalate", "args": {"reason": "Unconfirmed / non-specific report, no operational change made: Plant is offline, and the battery shipment is delayed. (keyword rules: unconfirmed)"}, "ok": true}

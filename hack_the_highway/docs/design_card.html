@@ -1,0 +1,44 @@
+<!doctype html><meta charset='utf-8'><title>Design card</title><style>@page{size:Letter;margin:0.45in 0.5in}body{font-family:'Segoe UI',Arial,sans-serif;font-size:9.9pt;line-height:1.33;color:#1d2321}
+h1{font-size:15pt;margin:0 0 7px;border-bottom:2px solid #c82132;padding-bottom:3px}p{margin:0 0 6px}
+table{border-collapse:collapse;width:100%;margin:2px 0 7px;font-size:9.2pt}th,td{border:1px solid #cfd6cd;padding:3px 5px;text-align:left;vertical-align:top}
+th{background:#edf0e9}code{font-family:Consolas,monospace;font-size:8.8pt;background:#f1f3ed;padding:0 2px}</style><h1>Design card — Wacky Wheels Control Tower · team penberthy-pushers</h1>
+<p><strong>Architecture.</strong> A <strong>Coordinator</strong> plus three specialists, all calling the enterprise tools (<code>POST /act</code>) through one validated, audited <code>ToolSession</code>.</p>
+<p><strong>Flow:</strong> <code>GET /events</code> → Coordinator: LLM extraction → grounding in the knowledge graph → decide <em>noise / escalate / act</em> → specialists traverse the graph and plan → validated <code>POST /act</code> calls → <code>action_log.jsonl</code> + per-event trace (summary, reason, graph path, audit trail) → control-tower UI.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Responsibility</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coordinator</td>
+<td>LLM understanding, graph grounding, noise / escalate / act decision, routing, guardrails, summary</td>
+<td><code>escalate</code></td>
+</tr>
+<tr>
+<td>SupplyChainPlanner</td>
+<td>Delays and outages: finds affected builds by graph traversal, moves each to the earliest feasible slot (same plant, else transfer) with live capacity</td>
+<td><code>mes.get_schedule</code>, <code>mes.reschedule</code>, <code>mes.transfer</code></td>
+</tr>
+<tr>
+<td>CustomerDealerAgent</td>
+<td>One <code>dealer.notify</code> per affected dealer (only its orders); loaners by tier, promised date and pool limit</td>
+<td><code>dealer.notify</code>, <code>crm.loaner_availability</code>, <code>crm.assign_loaner</code></td>
+</tr>
+<tr>
+<td>QualityAgent</td>
+<td>Lot → vehicles: hold lot, stop sale of unsold vehicles, contact owners of sold ones</td>
+<td><code>quality.hold_lot</code>, <code>dealer.stop_sale</code>, <code>crm.notify_customer</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Knowledge graph.</strong> 12 classes and 19 typed relations; 17,040 nodes and 28,251 edges, built from the CSVs in under 0.2 s. Every traversal returns the records <em>and</em> the typed path it walked (for example <code>Shipment -CARRIES-&gt; Part &lt;-HAS_PART- Model &lt;-OF_MODEL- ProductionOrder &lt;-FULFILLED_BY- CustomerOrder -&gt; Dealer / Customer</code>); each trace cites one path per incident. Diagram <code>ontology.svg</code>; export <code>ontology.json</code>, <code>ontology.mmd</code>; and the Ontology tab.</p>
+<p><strong>LLM versus code.</strong> The LLM only does what needs language: classify, split multi-incident messages, and copy entity mentions and date phrases <em>verbatim</em> (JSON-schema output, temperature 0, one call per event). Code does everything that must be exact: alias and graph name resolution, relative dates from 2027-03-08 ("next Friday"), shipment and lot identification, handbook rules and slot planning. The model never invents an id or a date, and the same event always yields the same actions. A rule-based extractor implements the same schema as offline fallback and cross-checks every event.</p>
+<p><strong>Guardrails.</strong> (1) Grounding gate: anything that cannot be resolved uniquely in the graph becomes <em>unconfirmed</em> and is escalated. (2) Rumors: escalate only. (3) Noise: zero tool calls. (4) Every call validated against <code>/tools</code> before sending; capacity read live before each move. (5) Transport errors retried with backoff; business errors never blindly retried, the planner refreshes and tries the next slot; no feasible slot → escalate. (6) LLM failure → circuit breaker → rules. (7) Compound events share one capacity view and one loaner allocation; each dealer gets exactly one message.</p>
+<p><strong>Evaluation.</strong> <code>verify.py</code> replays <code>action_log.jsonl</code> on a fresh copy of the organizers' world and compares it with a <em>separate</em> handbook implementation that shares no code with the agents. <strong>Run 1: 15/15 events pass, 879 calls, 0 failed, 766 writes;</strong> all 50 moved orders (45 reschedules, 5 transfers) match an independent earliest-slot plan. The six vague messages from the organizers' explainer: 5 escalations, 1 noise, 0 writes. A fresh rerun reproduces all 877 operational calls exactly, in the same order (only the wording of the 2 escalation reasons varies), and the offline rules-only fallback produces the same actions.</p>
+<p><strong>Model used (citation).</strong> <strong>Google Gemini 3.5 Flash-Lite</strong> (<code>gemini-3.5-flash-lite</code>, Gemini API v1beta, free tier) for event understanding only: 15 calls, 6,761 input + 2,187 output tokens, 0 retries. No other ML model; planning is deterministic Python. Optional, unused in Run 1: Anthropic Claude via the <code>anthropic</code> SDK.</p>
+<p><strong>Interpretation choices.</strong> "Next Wednesday" means Wednesday of next week, and likewise for every weekday; this is consistent with the shipment and lot tables. Transfers go to the earliest free day at any plant building the model (<code>HTW_TRANSFER=after_restart</code> is the switchable alternative; it changes 5 orders).</p>
+<p><strong>What we would improve.</strong> Live comparison of small models (Claude Haiku vs Gemini Flash-Lite) on extraction accuracy, cost and latency; an adversarial event set (typos, conflicting dates, unknown suppliers); human approval in the UI before large write batches; an optimizer instead of greedy slots when disruptions compete for capacity.</p>

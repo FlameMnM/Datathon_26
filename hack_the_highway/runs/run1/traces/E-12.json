@@ -1,0 +1,1456 @@
+{
+  "event": {
+    "event_id": "E-12",
+    "received_at": "2027-03-08T10:24:00",
+    "source": "supplier email",
+    "text": "Subject: Shipment SH-0182 delayed\nFrom: dispatch@orbit.example\n\nOur shipment SH-0182 of CAM-360 (surround-view camera kit) for Wacky Wheels Princeton (P_IN) was due 2027-03-15 and will now arrive 2027-03-18. Reason: port congestion."
+  },
+  "category": [
+    "supplier_delay"
+  ],
+  "summary": "I1 supplier delay SH-0182 CAM-360->P_IN 2027-03-15->2027-03-18: 3 production orders affected. Actions: crm.assign_loaner x10, dealer.notify x14, mes.reschedule x3; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 497,
+      "output_tokens": 147,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "supplier_delay",
+        "summary": "Shipment SH-0182 of surround-view camera kits is delayed from 2027-03-15 to 2027-03-18 due to port congestion.",
+        "supplier": "orbit",
+        "part": "CAM-360",
+        "plant": "Princeton",
+        "shipment_id": "SH-0182",
+        "lot_id": "",
+        "date_1": "2027-03-15",
+        "date_2": "2027-03-18",
+        "confirmed_and_specific": true,
+        "reason": "An inbound part shipment from a supplier is arriving later than planned with specific details."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "supplier_delay",
+        "summary": "Subject: Shipment SH-0182 delayed\nFrom: dispatch@orbit.example\n\nOur shipment SH-0182 of CAM-360 (surround-view camera kit) for Wacky Wheels Princeton (P_IN) was",
+        "supplier": "orbit",
+        "part": "CAM-360",
+        "plant": "Wacky Wheels Princeton",
+        "shipment_id": "SH-0182",
+        "lot_id": "",
+        "date_1": "2027-03-15",
+        "date_2": "2027-03-18",
+        "confirmed_and_specific": true,
+        "reason": "keyword rules: supplier_delay"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "supplier_delay",
+      "summary": "Shipment SH-0182 of surround-view camera kits is delayed from 2027-03-15 to 2027-03-18 due to port congestion.",
+      "llm_reason": "An inbound part shipment from a supplier is arriving later than planned with specific details.",
+      "dates": {
+        "date_1": "'2027-03-15' -> 2027-03-15 (ISO date)",
+        "date_2": "'2027-03-18' -> 2027-03-18 (ISO date)"
+      },
+      "resolution": {
+        "part": "'CAM-360' -> CAM-360 (exact match 'cam-360')",
+        "plant": "'Princeton' -> P_IN (exact match 'princeton')",
+        "supplier": "'orbit' -> SUP-11 (exact match 'orbit')"
+      },
+      "shipment": "SH-0182",
+      "part": "CAM-360",
+      "plant": "P_IN",
+      "supplier": "SUP-11",
+      "eta": "2027-03-15",
+      "new_eta": "2027-03-18",
+      "grounded": true,
+      "restart_idx": 8,
+      "affected_pos": [
+        "PO-0316",
+        "PO-0319",
+        "PO-0322"
+      ]
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): supplier_delay"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "routing 1 delay/outage incident(s) to SupplyChainPlanner, then CustomerDealerAgent (shared slots and loaner pools)"
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "step": "[I1] BOM traversal: CAM-360 is used by ['SUMMIT', 'VOYAGER']; at P_IN 3 future production orders build in [2027-03-15, 2027-03-18): ['PO-0316', 'PO-0319', 'PO-0322']"
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "step": "PO-0316 (VOYAGER, was 2027-03-15) -> P_IN 2027-03-18 (same plant, first free slot)"
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "step": "PO-0319 (VOYAGER, was 2027-03-16) -> P_IN 2027-03-18 (same plant, first free slot)"
+    },
+    {
+      "agent": "SupplyChainPlanner",
+      "step": "PO-0322 (VOYAGER, was 2027-03-17) -> P_IN 2027-03-19 (same plant, first free slot)"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "26 affected customer orders at 14 dealers"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D01: pool 3, entitled 1 -> loaners ['CO-01812']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D06: pool 3, entitled 1 -> loaners ['CO-01781']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D08: pool 3, entitled 2 -> loaners ['CO-01761', 'CO-01780']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D20: pool 1, entitled 1 -> loaners ['CO-01786']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D21: pool 3, entitled 2 -> loaners ['CO-01783', 'CO-01808']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D44: pool 2, entitled 2 -> loaners ['CO-01785', 'CO-01814']"
+    },
+    {
+      "agent": "CustomerDealerAgent",
+      "step": "D45: pool 2, entitled 1 -> loaners ['CO-01810']"
+    }
+  ],
+  "graph_paths": [
+    {
+      "incident": "I1",
+      "title": "SH-0182 (CAM-360 -> P_IN) late: 2027-03-15 -> 2027-03-18",
+      "layers": [
+        {
+          "label": "Shipment",
+          "ids": [
+            "SH-0182"
+          ]
+        },
+        {
+          "edge": "CARRIES"
+        },
+        {
+          "label": "Part",
+          "ids": [
+            "CAM-360"
+          ]
+        },
+        {
+          "edge": "HAS_PART (BOM, reverse)"
+        },
+        {
+          "label": "Model",
+          "ids": [
+            "VOYAGER"
+          ]
+        },
+        {
+          "edge": "OF_MODEL (reverse) + BUILT_AT P_IN + build in [2027-03-15, 2027-03-18)"
+        },
+        {
+          "label": "ProductionOrder",
+          "ids": [
+            "PO-0316",
+            "PO-0319",
+            "PO-0322"
+          ]
+        },
+        {
+          "edge": "FULFILLED_BY (reverse)"
+        },
+        {
+          "label": "CustomerOrder",
+          "ids": [
+            "CO-01756",
+            "CO-01757",
+            "CO-01758",
+            "CO-01759",
+            "CO-01760",
+            "CO-01761",
+            "CO-01762",
+            "CO-01780",
+            "CO-01781",
+            "CO-01782",
+            "CO-01783",
+            "CO-01784",
+            "CO-01785",
+            "CO-01786",
+            "CO-01787",
+            "CO-01788",
+            "CO-01789",
+            "CO-01806",
+            "CO-01807",
+            "CO-01808",
+            "CO-01809",
+            "CO-01810",
+            "CO-01811",
+            "CO-01812",
+            "CO-01813",
+            "CO-01814"
+          ]
+        },
+        {
+          "edge": "VIA_DEALER / PLACED_BY"
+        },
+        {
+          "label": "Dealer",
+          "ids": [
+            "D01",
+            "D02",
+            "D06",
+            "D07",
+            "D08",
+            "D14",
+            "D20",
+            "D21",
+            "D25",
+            "D30",
+            "D31",
+            "D42",
+            "D44",
+            "D45"
+          ]
+        },
+        {
+          "label": "Customer",
+          "ids": [
+            "C0380",
+            "C0746",
+            "C1115",
+            "C1134",
+            "C1775",
+            "C1818",
+            "C1845",
+            "C1895",
+            "C2141",
+            "C2471",
+            "C2786",
+            "C2879",
+            "C3207",
+            "C4130",
+            "C4200",
+            "C4240",
+            "C4508",
+            "C4656",
+            "C4874",
+            "C5153",
+            "C5201",
+            "C5947",
+            "C6028",
+            "C6031",
+            "C6778",
+            "C6865"
+          ]
+        }
+      ]
+    }
+  ],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:05:46.434",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.get_schedule",
+      "args": {
+        "plant_id": "P_IN",
+        "date": "2027-03-18"
+      },
+      "why": "read live capacity",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "plant_id": "P_IN",
+        "date": "2027-03-18",
+        "orders": [
+          {
+            "production_order_id": "PO-0325",
+            "model": "VOYAGER"
+          },
+          {
+            "production_order_id": "PO-0326",
+            "model": "RANGER"
+          },
+          {
+            "production_order_id": "PO-0327",
+            "model": "NOVA"
+          }
+        ],
+        "free_slots": 2
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.436",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0316",
+        "new_date": "2027-03-18"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0316",
+        "plant_id": "P_IN",
+        "date": "2027-03-18"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.436",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0319",
+        "new_date": "2027-03-18"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0319",
+        "plant_id": "P_IN",
+        "date": "2027-03-18"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.437",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.get_schedule",
+      "args": {
+        "plant_id": "P_IN",
+        "date": "2027-03-19"
+      },
+      "why": "read live capacity",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "plant_id": "P_IN",
+        "date": "2027-03-19",
+        "orders": [
+          {
+            "production_order_id": "PO-0328",
+            "model": "VOYAGER"
+          },
+          {
+            "production_order_id": "PO-0329",
+            "model": "RANGER"
+          },
+          {
+            "production_order_id": "PO-0330",
+            "model": "NOVA"
+          }
+        ],
+        "free_slots": 2
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.438",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0322",
+        "new_date": "2027-03-19"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0322",
+        "plant_id": "P_IN",
+        "date": "2027-03-19"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.439",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D01",
+        "customer_order_ids": [
+          "CO-01812"
+        ],
+        "message": "Delayed customer orders: CO-01812 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.439",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D02",
+        "customer_order_ids": [
+          "CO-01759",
+          "CO-01811"
+        ],
+        "message": "Delayed customer orders: CO-01759 (PO-0316 now P_IN 2027-03-18); CO-01811 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.440",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D06",
+        "customer_order_ids": [
+          "CO-01757",
+          "CO-01758",
+          "CO-01781"
+        ],
+        "message": "Delayed customer orders: CO-01757 (PO-0316 now P_IN 2027-03-18); CO-01758 (PO-0316 now P_IN 2027-03-18); CO-01781 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 3 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.441",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D07",
+        "customer_order_ids": [
+          "CO-01756"
+        ],
+        "message": "Delayed customer orders: CO-01756 (PO-0316 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.441",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D08",
+        "customer_order_ids": [
+          "CO-01761",
+          "CO-01780"
+        ],
+        "message": "Delayed customer orders: CO-01761 (PO-0316 now P_IN 2027-03-18); CO-01780 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.442",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D14",
+        "customer_order_ids": [
+          "CO-01762"
+        ],
+        "message": "Delayed customer orders: CO-01762 (PO-0316 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.443",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D20",
+        "customer_order_ids": [
+          "CO-01786"
+        ],
+        "message": "Delayed customer orders: CO-01786 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.444",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D21",
+        "customer_order_ids": [
+          "CO-01783",
+          "CO-01808"
+        ],
+        "message": "Delayed customer orders: CO-01783 (PO-0319 now P_IN 2027-03-18); CO-01808 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.444",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D25",
+        "customer_order_ids": [
+          "CO-01782",
+          "CO-01789"
+        ],
+        "message": "Delayed customer orders: CO-01782 (PO-0319 now P_IN 2027-03-18); CO-01789 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.445",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D30",
+        "customer_order_ids": [
+          "CO-01806"
+        ],
+        "message": "Delayed customer orders: CO-01806 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.446",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D31",
+        "customer_order_ids": [
+          "CO-01784",
+          "CO-01807"
+        ],
+        "message": "Delayed customer orders: CO-01784 (PO-0319 now P_IN 2027-03-18); CO-01807 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.447",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D42",
+        "customer_order_ids": [
+          "CO-01813"
+        ],
+        "message": "Delayed customer orders: CO-01813 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.447",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D44",
+        "customer_order_ids": [
+          "CO-01785",
+          "CO-01787",
+          "CO-01809",
+          "CO-01814"
+        ],
+        "message": "Delayed customer orders: CO-01785 (PO-0319 now P_IN 2027-03-18); CO-01787 (PO-0319 now P_IN 2027-03-18); CO-01809 (PO-0322 now P_IN 2027-03-19); CO-01814 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 4 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.448",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D45",
+        "customer_order_ids": [
+          "CO-01760",
+          "CO-01788",
+          "CO-01810"
+        ],
+        "message": "Delayed customer orders: CO-01760 (PO-0316 now P_IN 2027-03-18); CO-01788 (PO-0319 now P_IN 2027-03-18); CO-01810 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 3 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.449",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D01"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D01",
+        "available": 3
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.450",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01812"
+      },
+      "why": "Platinum customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D01"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.450",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D06"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D06",
+        "available": 3
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.451",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01781"
+      },
+      "why": "Gold customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D06"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.451",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D08"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D08",
+        "available": 3
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.452",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01761"
+      },
+      "why": "Platinum customer, promised 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D08"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.452",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01780"
+      },
+      "why": "Gold customer, promised 2027-03-19",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D08"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.453",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D20"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D20",
+        "available": 1
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.454",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01786"
+      },
+      "why": "Platinum customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D20"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.454",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D21"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D21",
+        "available": 3
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.455",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01783"
+      },
+      "why": "Platinum customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D21"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.455",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01808"
+      },
+      "why": "Gold customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D21"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.456",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D44"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D44",
+        "available": 2
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.456",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01785"
+      },
+      "why": "Platinum customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D44"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.456",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01814"
+      },
+      "why": "Gold customer, promised 2027-03-22",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D44"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.457",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.loaner_availability",
+      "args": {
+        "dealer_id": "D45"
+      },
+      "why": "check pool before assigning",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "dealer_id": "D45",
+        "available": 2
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.458",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01810"
+      },
+      "why": "Platinum customer, promised 2027-03-22",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D45"
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "3 builds rescheduled. 26 customer deliveries affected at 14 dealers; 10 Platinum/Gold customers got a loaner.",
+    "changed": [
+      "3 production orders moved (3 same-plant reschedules, 0 transfers); 3 now build later (avg 2.3 days).",
+      "14 dealers told about exactly their affected orders (one message each); 10 loaners assigned."
+    ],
+    "unchanged": [
+      "6 other orders at P_IN in the delay window (2027-03-15 to 2027-03-18) build models without CAM-360 (['NOVA', 'RANGER']), so they were not moved.",
+      "57 of 60 future production orders at P_IN were not affected and were not moved.",
+      "16 Standard-tier customers: dealer informed, no loaner (policy rule 5).",
+      "36 dealers have no affected orders and were not contacted.",
+      "No lots held, no vehicles stopped from sale (not part of a delay or outage)."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:05:46.436",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0316",
+        "new_date": "2027-03-18"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0316",
+        "plant_id": "P_IN",
+        "date": "2027-03-18"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.436",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0319",
+        "new_date": "2027-03-18"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0319",
+        "plant_id": "P_IN",
+        "date": "2027-03-18"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.438",
+      "agent": "SupplyChainPlanner",
+      "tool": "mes.reschedule",
+      "args": {
+        "production_order_id": "PO-0322",
+        "new_date": "2027-03-19"
+      },
+      "why": "earliest free slot at P_IN on/after restart 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "production_order_id": "PO-0322",
+        "plant_id": "P_IN",
+        "date": "2027-03-19"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.439",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D01",
+        "customer_order_ids": [
+          "CO-01812"
+        ],
+        "message": "Delayed customer orders: CO-01812 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.439",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D02",
+        "customer_order_ids": [
+          "CO-01759",
+          "CO-01811"
+        ],
+        "message": "Delayed customer orders: CO-01759 (PO-0316 now P_IN 2027-03-18); CO-01811 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.440",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D06",
+        "customer_order_ids": [
+          "CO-01757",
+          "CO-01758",
+          "CO-01781"
+        ],
+        "message": "Delayed customer orders: CO-01757 (PO-0316 now P_IN 2027-03-18); CO-01758 (PO-0316 now P_IN 2027-03-18); CO-01781 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 3 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.441",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D07",
+        "customer_order_ids": [
+          "CO-01756"
+        ],
+        "message": "Delayed customer orders: CO-01756 (PO-0316 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.441",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D08",
+        "customer_order_ids": [
+          "CO-01761",
+          "CO-01780"
+        ],
+        "message": "Delayed customer orders: CO-01761 (PO-0316 now P_IN 2027-03-18); CO-01780 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.442",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D14",
+        "customer_order_ids": [
+          "CO-01762"
+        ],
+        "message": "Delayed customer orders: CO-01762 (PO-0316 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.443",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D20",
+        "customer_order_ids": [
+          "CO-01786"
+        ],
+        "message": "Delayed customer orders: CO-01786 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.444",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D21",
+        "customer_order_ids": [
+          "CO-01783",
+          "CO-01808"
+        ],
+        "message": "Delayed customer orders: CO-01783 (PO-0319 now P_IN 2027-03-18); CO-01808 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.444",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D25",
+        "customer_order_ids": [
+          "CO-01782",
+          "CO-01789"
+        ],
+        "message": "Delayed customer orders: CO-01782 (PO-0319 now P_IN 2027-03-18); CO-01789 (PO-0319 now P_IN 2027-03-18)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.445",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D30",
+        "customer_order_ids": [
+          "CO-01806"
+        ],
+        "message": "Delayed customer orders: CO-01806 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.446",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D31",
+        "customer_order_ids": [
+          "CO-01784",
+          "CO-01807"
+        ],
+        "message": "Delayed customer orders: CO-01784 (PO-0319 now P_IN 2027-03-18); CO-01807 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 2 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.447",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D42",
+        "customer_order_ids": [
+          "CO-01813"
+        ],
+        "message": "Delayed customer orders: CO-01813 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 1 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.447",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D44",
+        "customer_order_ids": [
+          "CO-01785",
+          "CO-01787",
+          "CO-01809",
+          "CO-01814"
+        ],
+        "message": "Delayed customer orders: CO-01785 (PO-0319 now P_IN 2027-03-18); CO-01787 (PO-0319 now P_IN 2027-03-18); CO-01809 (PO-0322 now P_IN 2027-03-19); CO-01814 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 4 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.448",
+      "agent": "CustomerDealerAgent",
+      "tool": "dealer.notify",
+      "args": {
+        "dealer_id": "D45",
+        "customer_order_ids": [
+          "CO-01760",
+          "CO-01788",
+          "CO-01810"
+        ],
+        "message": "Delayed customer orders: CO-01760 (PO-0316 now P_IN 2027-03-18); CO-01788 (PO-0319 now P_IN 2027-03-18); CO-01810 (PO-0322 now P_IN 2027-03-19)"
+      },
+      "why": "dealer has 3 affected customer orders",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.450",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01812"
+      },
+      "why": "Platinum customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D01"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.451",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01781"
+      },
+      "why": "Gold customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D06"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.452",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01761"
+      },
+      "why": "Platinum customer, promised 2027-03-18",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D08"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.452",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01780"
+      },
+      "why": "Gold customer, promised 2027-03-19",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D08"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.454",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01786"
+      },
+      "why": "Platinum customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D20"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.455",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01783"
+      },
+      "why": "Platinum customer, promised 2027-03-20",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D21"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.455",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01808"
+      },
+      "why": "Gold customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D21"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.456",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01785"
+      },
+      "why": "Platinum customer, promised 2027-03-21",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D44"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.456",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01814"
+      },
+      "why": "Gold customer, promised 2027-03-22",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D44"
+      }
+    },
+    {
+      "t": "2026-11-07T20:05:46.458",
+      "agent": "CustomerDealerAgent",
+      "tool": "crm.assign_loaner",
+      "args": {
+        "customer_order_id": "CO-01810"
+      },
+      "why": "Platinum customer, promised 2027-03-22",
+      "write": true,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true,
+        "dealer_id": "D45"
+      }
+    }
+  ]
+}

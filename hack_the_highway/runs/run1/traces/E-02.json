@@ -1,0 +1,118 @@
+{
+  "event": {
+    "event_id": "E-02",
+    "received_at": "2027-03-08T07:34:00",
+    "source": "ops chat",
+    "text": "Rumor from a supplier rep: something may be off with a seat material coming up. No dates, no details, nothing confirmed."
+  },
+  "category": [
+    "unconfirmed"
+  ],
+  "summary": "I1 unconfirmed - escalated to a human, no operational change (It is an unconfirmed rumor missing specifics and dates.). Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 439,
+      "output_tokens": 128,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "unconfirmed",
+        "summary": "Rumor regarding seat material issue with no specifics or dates.",
+        "supplier": "",
+        "part": "seat material",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "It is an unconfirmed rumor missing specifics and dates."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "unconfirmed",
+        "summary": "Rumor from a supplier rep: something may be off with a seat material coming up. No dates, no details, nothing confirmed.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: unconfirmed"
+      }
+    ],
+    "agree_on_kinds": true
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "unconfirmed",
+      "summary": "Rumor regarding seat material issue with no specifics or dates.",
+      "llm_reason": "It is an unconfirmed rumor missing specifics and dates.",
+      "reason": "It is an unconfirmed rumor missing specifics and dates."
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): unconfirmed"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "escalated 1 unclear item(s) to a human; no write actions"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:05:02.783",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Rumor regarding seat material issue with no specifics or dates. (It is an unconfirmed rumor missing specifics and dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "impact": {
+    "headline": "No operational impact. Handed to a human for review.",
+    "changed": [
+      "Nothing. No production order, dealer, customer, loaner, lot or vehicle record was written.",
+      "One escalation to a human (not an operational change)."
+    ],
+    "unchanged": [
+      "All 540 production orders, 50 dealers, all loaner pools and all 364 lots are untouched."
+    ]
+  },
+  "actions": [
+    {
+      "t": "2026-11-07T20:05:02.783",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Rumor regarding seat material issue with no specifics or dates. (It is an unconfirmed rumor missing specifics and dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

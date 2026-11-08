@@ -1,0 +1,108 @@
+{
+  "event": {
+    "event_id": "X-01",
+    "received_at": "2027-03-08T12:00:00",
+    "source": "explainer: supplier delay",
+    "text": "Battery packs are running late. The line is waiting."
+  },
+  "category": [
+    "unconfirmed"
+  ],
+  "summary": "I1 unconfirmed - escalated to a human, no operational change (The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates.). Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 423,
+      "output_tokens": 106,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "unconfirmed",
+        "summary": "Battery packs are reported running late without specific plant, supplier, or date details.",
+        "supplier": "",
+        "part": "Battery packs",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "noise",
+        "summary": "Battery packs are running late. The line is waiting.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: noise"
+      }
+    ],
+    "agree_on_kinds": false
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "unconfirmed",
+      "summary": "Battery packs are reported running late without specific plant, supplier, or date details.",
+      "llm_reason": "The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates.",
+      "reason": "The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates."
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 1 incident(s): unconfirmed"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "escalated 1 unclear item(s) to a human; no write actions"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:03:22.267",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Battery packs are reported running late without specific plant, supplier, or date details. (The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "actions": [
+    {
+      "t": "2026-11-07T20:03:22.267",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: Battery packs are reported running late without specific plant, supplier, or date details. (The message lacks specifics regarding which plant, supplier, or shipment is affected and does not provide dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

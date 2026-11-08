@@ -1,0 +1,31 @@
+classDiagram
+  class Supplier
+  class Part
+  class Model
+  class Plant
+  class Shipment
+  class Lot
+  class ProductionOrder
+  class CustomerOrder
+  class Customer
+  class Dealer
+  class Vehicle
+  class Alias
+  Supplier --> Part : SUPPLIES
+  Shipment --> Supplier : SHIPPED_BY
+  Shipment --> Part : CARRIES
+  Shipment --> Plant : DELIVERS_TO
+  Model --> Part : HAS_PART
+  Plant --> Model : BUILDS
+  ProductionOrder --> Plant : BUILT_AT
+  ProductionOrder --> Model : OF_MODEL
+  CustomerOrder --> ProductionOrder : FULFILLED_BY
+  CustomerOrder --> Dealer : VIA_DEALER
+  CustomerOrder --> Customer : PLACED_BY
+  Lot --> Part : OF_PART
+  Lot --> Supplier : MADE_BY
+  Lot --> Plant : CONSUMED_AT
+  Lot --> ProductionOrder : INSTALLED_IN
+  Vehicle --> ProductionOrder : BUILT_FROM
+  Vehicle --> Dealer : AT_DEALER
+  Vehicle --> Customer : OWNED_BY

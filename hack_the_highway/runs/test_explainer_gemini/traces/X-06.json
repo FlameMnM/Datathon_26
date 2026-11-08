@@ -1,0 +1,128 @@
+{
+  "event": {
+    "event_id": "X-06",
+    "received_at": "2027-03-08T12:25:00",
+    "source": "explainer: compound",
+    "text": "Plant is offline, and the battery shipment is delayed."
+  },
+  "category": [
+    "unconfirmed"
+  ],
+  "summary": "I1 unconfirmed - escalated to a human, no operational change (Missing the specifics needed to act such as which plant and which dates.). I2 unconfirmed - escalated to a human, no operational change (Missing specifics needed to act such as which plant, supplier, and dates.). Actions: none; 0 failed calls",
+  "understanding": {
+    "extractor": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "note": null,
+    "tokens": {
+      "input_tokens": 423,
+      "output_tokens": 240,
+      "retries": 0
+    },
+    "raw": [
+      {
+        "kind": "unconfirmed",
+        "summary": "A plant is reported offline without specific details.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "Missing the specifics needed to act such as which plant and which dates."
+      },
+      {
+        "kind": "unconfirmed",
+        "summary": "The battery shipment is reported delayed without specifics.",
+        "supplier": "",
+        "part": "battery",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "Missing specifics needed to act such as which plant, supplier, and dates."
+      }
+    ],
+    "rules_crosscheck": [
+      {
+        "kind": "noise",
+        "summary": "Plant is offline, and the battery shipment is delayed.",
+        "supplier": "",
+        "part": "",
+        "plant": "",
+        "shipment_id": "",
+        "lot_id": "",
+        "date_1": "",
+        "date_2": "",
+        "confirmed_and_specific": false,
+        "reason": "keyword rules: noise"
+      }
+    ],
+    "agree_on_kinds": false
+  },
+  "incidents": [
+    {
+      "id": "I1",
+      "kind": "unconfirmed",
+      "summary": "A plant is reported offline without specific details.",
+      "llm_reason": "Missing the specifics needed to act such as which plant and which dates.",
+      "reason": "Missing the specifics needed to act such as which plant and which dates."
+    },
+    {
+      "id": "I2",
+      "kind": "unconfirmed",
+      "summary": "The battery shipment is reported delayed without specifics.",
+      "llm_reason": "Missing specifics needed to act such as which plant, supplier, and dates.",
+      "reason": "Missing specifics needed to act such as which plant, supplier, and dates."
+    }
+  ],
+  "reasoning": [
+    {
+      "agent": "Coordinator",
+      "step": "understanding (gemini / gemini-3.5-flash-lite): 2 incident(s): unconfirmed, unconfirmed"
+    },
+    {
+      "agent": "Coordinator",
+      "step": "escalated 2 unclear item(s) to a human; no write actions"
+    }
+  ],
+  "graph_paths": [],
+  "audit_trail": [
+    {
+      "t": "2026-11-07T20:03:44.042",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: A plant is reported offline without specific details. (Missing the specifics needed to act such as which plant and which dates.); The battery shipment is reported delayed without specifics. (Missing specifics needed to act such as which plant, supplier, and dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ],
+  "issues": [],
+  "actions": [
+    {
+      "t": "2026-11-07T20:03:44.042",
+      "agent": "Coordinator",
+      "tool": "escalate",
+      "args": {
+        "reason": "Unconfirmed / non-specific report, no operational change made: A plant is reported offline without specific details. (Missing the specifics needed to act such as which plant and which dates.); The battery shipment is reported delayed without specifics. (Missing specifics needed to act such as which plant, supplier, and dates.)"
+      },
+      "why": "policy rule 8: unconfirmed or unclear -> escalate only",
+      "write": false,
+      "ok": true,
+      "sent": true,
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}
