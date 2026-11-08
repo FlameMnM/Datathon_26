@@ -76,6 +76,26 @@ For v6 we also ran a placebo control (the same code with the wrong structure, wh
 - Ask "what does the error look like?" before "what model do I add?" Most of our gains came from studying where predictions were wrong.
 - Independent checks (held-out halves, a different split, placebo controls) are what separate a real gain from an overfit.
 
+## Adaptation round: when the rules changed
+
+Round two released fresh data where "some patterns have changed," with 90 minutes to respond. We first ran our main-round model unchanged, and it dropped to **reference level: 19.8 / 40** on validation. Our diagnostics showed why within minutes. The simulator kept exactly the same structure (one active XOR lag pair per machine, the same hidden payout-size modes), but the lag pairs moved from (2,5), (1,3), (4,7) to **(1,4), (3,8), (2,6)**.
+
+Instead of hard-coding the new pairs, we built **v7**, which learns the round-specific structure from each round's own training split every time it runs:
+
+- **Active lag pairs:** every pair that best explains at least 10% of the stable training machines, with a significant likelihood-ratio gain.
+- **Prior settings:** the midpoint line per machine type, the typical effect size, and the share of machines with no pattern. The spreads use an empirical-Bayes method-of-moments correction (observed variance minus sampling variance), so noise doesn't inflate the priors.
+
+The same code, with no round-specific constants, rediscovers the main-round pairs on main data (56.30 / 60, matching v6) and the new pairs on adaptation data. It scores **37.2 / 40 on adaptation validation**, fully out-of-sample, since nothing was tuned on that validation set.
+
+| Round | Model | Validation points |
+|---|---|---|
+| Main (60) | v6 | 56.32 |
+| Adaptation (40) | v6 unchanged | 19.82 |
+| Adaptation (40) | **v7 (learns structure from training data)** | **37.21** |
+| **Total (100)** | **v6 main + v7 adaptation** | **≈ 93.5** |
+
+We also tested two ideas suggested by the new round's notes: a neighboring-machine effect and gradual-drift tracking. Neither held up on held-out data or cleared our minimum gain, so we left them out. Our main-round files are unchanged; the adaptation files are added alongside them and clearly labelled.
+
 ## What's next for House Edge
 
 - Better hidden-mode prediction: perfect knowledge of the payout mode would be worth about +2.7 points, the largest remaining gap.
