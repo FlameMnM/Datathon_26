@@ -1,9 +1,9 @@
 # House Edge — adaptation round entry (xorcast v7)
 
-- Team ID: penberthy-pushers
-- Round: adaptation
+- Team name: penberthy-pushers (Team ID: penberthy-pushers)
+- Round: adaptation (round two)
 - Season ID: 5fffdc4d0c700bbf61c3f911
-- Environment: `python` image (see `reproduce.json`). **Python standard library only**, no extra packages.
+- Environment: `python` image (see `reproduce.json`). **Python standard library only**, no extra packages (see `requirements.txt`).
 - Tested with Python 3.12.3 on Linux (WSL2), CPU only. Deterministic: no randomness, no seeds needed.
 
 ## What changed for the adaptation round (v7)

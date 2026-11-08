@@ -1,0 +1,6 @@
+# Prediction (predict.py, run by reproduce.json) uses the Python standard library only:
+# no packages need to be installed to recreate submission.csv.
+#
+# Optional, only for re-training the payout-size mode trees offline (train_mode.py), exact versions used:
+# numpy==2.5.4
+# lightgbm==4.7.0
